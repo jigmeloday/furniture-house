@@ -117,6 +117,9 @@ export default function Home() {
             </p>
           </a>
         </div>
+        <div className='text-3xl font-bold underline'>
+          hello
+        </div>
       </main>
     </>
   )
