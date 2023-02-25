@@ -1,17 +1,15 @@
-import { getSlug } from "@/libs/posts"
+import { getPosts } from "@/libs/posts"
 import Link from "next/link";
 
 export async function getStaticProps() {
-  const slugs = await getSlug();
+  const posts = await getPosts();
   return{
-    props: {
-      paths: slugs.map((slug) => slug), 
-    fallback: false
-    }
+    props: {posts}
 }
 }
 
 export default function Home(props: any) {
+  console.log(props.posts)
   return (
     <div>
       <h1>
@@ -19,10 +17,10 @@ export default function Home(props: any) {
       </h1>
       <ol>
       {
-        props.paths.map((path: any, index: number) => 
+        props.posts.map((path: any, index: number) => 
         <li key={index}>
-          <Link href={`/posts/${path}`}>
-          {path}
+          <Link href={`/posts/${path.slug}`}>
+          {path.title}
           </Link>
         </li>)
       }

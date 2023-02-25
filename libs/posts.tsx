@@ -12,3 +12,15 @@ export async function getSlug() {
     )
     
 }
+
+export async function getPosts() {
+    const slugs = await getSlug();
+    const data: any = [];
+    for(let slug of slugs) {
+        const post = await getPost(`${slug}.json`);
+        data.push({
+            slug, ...post
+        });
+    }
+    return (data);
+}
