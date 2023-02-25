@@ -12,13 +12,12 @@ export async function getStaticProps() {
 }
 
 export default function Home(props: any) {
-  console.log(props.paths)
   return (
     <div>
       <h1>
         My Blog
       </h1>
-      <ul>
+      <ol>
       {
         props.paths.map((path: any, index: number) => 
         <li key={index}>
@@ -27,7 +26,7 @@ export default function Home(props: any) {
           </Link>
         </li>)
       }
-      </ul>
+      </ol>
     </div>
   )
 }
