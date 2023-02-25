@@ -1,8 +1,7 @@
-import { readFile } from 'fs/promises'
+import { getPost } from '@/libs/posts';
 
 export async function getStaticProps() {
-    const data = await readFile('content/posts/firstpost.json', 'utf-8')
-   const post = JSON.parse(data)
+   const post = await getPost('firstpost.json');
     return{
         props: {post}
     }
