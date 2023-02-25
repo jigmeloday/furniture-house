@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ThemeSwitcher from '../themeSwitcher/themeSwitcher';
 
 function Navbar() {
     return(
@@ -14,7 +15,11 @@ function Navbar() {
                    About Page
                    </Link>
                 </li>
+                <li>
+                <ThemeSwitcher />
+                </li>
             </ul>
+            
         </nav>
     )
 }

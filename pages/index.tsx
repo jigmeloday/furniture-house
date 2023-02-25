@@ -9,7 +9,6 @@ export async function getStaticProps() {
 }
 
 export default function Home(props: any) {
-  console.log(props.posts)
   return (
     <div>
       <h1>
