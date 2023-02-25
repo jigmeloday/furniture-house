@@ -1,0 +1,12 @@
+li{
+    display: inline;
+}
+
+li:not(:first-child){
+    margin-left: 0.75rem;
+}
+
+a:focus, a:hover {
+    text-decoration: underline;
+    color: darkred;
+}
