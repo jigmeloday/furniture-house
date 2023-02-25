@@ -4,12 +4,14 @@ function Navbar() {
         <div>
             <ul>
                 <li>
-                   <Link>
+                   <Link href='/'>
                    Home Page
                    </Link>
                 </li>
                 <li>
-                    About Page
+                   <Link href='/about'>
+                   About Page
+                   </Link>
                 </li>
             </ul>
         </div>
