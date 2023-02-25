@@ -1,18 +1,24 @@
-import Link from "next/link";
+import { getSlug } from "@/libs/posts"
 
-export default function Home() {
+export default function Home(props: any) {
+  console.log(props)
   return (
     <div>
       <h1>
         My Blog
       </h1>
-      <ul>
+      {/* <ul>
         <li>
           <Link href='/posts/first-post '>
-            Post
+            Post 1
           </Link>
         </li>
-      </ul>
+        <li>
+          <Link href='/posts/second-post '>
+            Post 2
+          </Link>
+        </li>
+      </ul> */}
     </div>
   )
 }

@@ -1,17 +1,16 @@
-import { getPost } from '@/libs/posts';
+import { getPost, getSlug } from '@/libs/posts';
 
 export async function getStaticPaths() {
+    const slugs = await getSlug();
     return{
-        paths: [
-            {params: { slug: 'first-post' }},
-            {params: { slug: 'second-post' }}
-        ], 
+        paths: slugs.map((slug) => ({
+            params: {slug}
+        })), 
         fallback: false
     }
 }
 
 export async function getStaticProps(context: any ) {
-    console.log(context.params.slug)
    const post = await getPost(`${context.params.slug}.json`);
     return{
         props: {post}
