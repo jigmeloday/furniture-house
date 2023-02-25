@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+:root{
+    --background-color: white;
+    --link-color: darkred;
+    --text-color: black;
+}
+
+
 body{
     font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .NavBar li{
@@ -14,7 +24,11 @@ body{
     margin-left: 0.75rem;
 }
 
+.NavBar a {
+    color: var(--link-color);
+}
+
 .NavBar a:focus, a:hover {
     text-decoration: underline;
-    color: darkred;
+    color: var(--link-color);
 }
