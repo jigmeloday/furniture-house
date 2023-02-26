@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root{
     --background-color: white;
     --link-color: darkred;
     --text-color: black;
 }
-
 
 body{
     font-family: Georgia, 'Times New Roman', Times, serif;
