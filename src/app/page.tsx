@@ -7,14 +7,13 @@ export default function Home() {
     return (
         <main className="w-full">
             <section className="w-full h-screen">
-                <div className="flex items-center justify-end h-full w-full bg-banner">
-                    <div
-                        className="space-y-[36px] bg-primary-light pt-[62px] pb-[38px] px-[42px] sm:mr-[58px] rounded-[10px]">
+                <div className="flex items-center justify-end h-full w-full bg-banner bg-no-repeat bg-cover">
+                    <div className="space-y-[36px] bg-primary-light pt-[32px] px-[21px] pb-[24px] mr-[12px] sm:pt-[62px] sm:pb-[38px] sm:px-[42px] sm:mr-[58px] rounded-[10px]">
                         <div>
-                            <span className="text-typo-dark text-[14px] font-[600]">New Arrival</span>
-                            <div className="sm:w-[420px]">
+                            <span className="text-typo-dark text-[12px] sm:text-[14px] font-[600]">New Arrival</span>
+                            <div className="w-[260px] sm:w-[420px]">
                                 <h1 className="text-primary">Discover Our New Collection</h1>
-                                <span className="text-[14px] font-[400]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</span>
+                                <span className="text-[12px] sm:text-[14px] font-[400]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.</span>
                             </div>
                         </div>
                         <div>
@@ -26,19 +25,22 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="px-[16px] sm:px-[85px] w-full my-[56px]">
-                <div className="w-full flex flex-col items-center">
-                    <h5>Browse The Range</h5>
-                    <span className="text-typo-dark/70 text-[14px] font-[400]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+
+            {/*SECTION 2*/}
+
+            <section className="px-[16px] sm:px-[85px] w-full my-[28px] sm:my-[56px]">
+                <div className="w-full flex flex-col items-center text-center">
+                    <h4>Browse The Range</h4>
+                    <span className="text-typo-dark/70 text-[12px] sm:text-[14px] font-[400]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
                 </div>
-                <div className="grid grid-col md:grid-cols-3 gap-[30px] mt-[40px]">
+                <div className="grid grid-col md:grid-cols-3 md:gap-[30px] mt-[20px] sm:mt-[40px]">
                     { CATEGORY.map( ( { id, image, label } ) => (
                         <Link href={`/shop?${id}`} key={id}>
-                            <div className="flex flex-col items-center">
-                                <div className="relative h-[300px] sm:h-[480px] w-full sm:w-[380px] overflow-hidden rounded-sm">
+                            <div className="flex flex-col space-y-[8px] items-center">
+                                <div className="relative h-[300px] w-full md:h-[340px] xl:h-[480px] xl:w-[380px] overflow-hidden rounded-sm">
                                     <Image src={image} alt='category' fill className="object-cover transition duration-300 ease-in-out hover:scale-110 cursor-pointer"/>
                                 </div>
-                                <span className="font-[600] text-typo-dark/80">
+                                <span className="font-[600] text-[14] sm:text-[16] text-typo-dark/80">
                                 { label }
                             </span>
                             </div>
@@ -46,13 +48,16 @@ export default function Home() {
                     ) ) }
                 </div>
             </section>
-            <section className="px-[16px] sm:px-[85px] w-full my-[56px]">
+
+            {/*SECTION 3*/}
+
+            <section className="px-[16px] sm:px-[85px] w-full my-[28px] my-[56px]">
                 <div className="w-full flex flex-col items-center">
-                    <h5>Popular Items</h5>
+                    <h4>Popular Items</h4>
                 </div>
-                <div className="grid grid-col sm:grid-cols-2 md:grid-cols-4 gap-[30px] mt-[40px]">
+                <div className="grid grid-col sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[40px]">
                     { [1,2,3,4,5,6,7,8].map( (item) => (
-                       <div className="w-full md:w-[285px] border group rounded-sm" key={item}>
+                       <div className="w-full xl:w-[285px] border group rounded-sm" key={item}>
                           <Link href={`/shop/${item}`}>
                               <div className="relative h-[301px] w-full">
                                   <Image src='/images/living.webp' alt='dummy' fill className='object-cover' />

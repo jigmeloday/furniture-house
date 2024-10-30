@@ -42,7 +42,7 @@ const config: Config = {
                 sm: 'calc(var(--radius) - 4px)'
             },
             backgroundImage: {
-                'cover': "url('/images/cover.webp')",
+                'cover-section': "url('/images/cover.webp')",
                 'banner': "url('/images/banner.webp')",
             }
         }
