@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { CATEGORY } from '@/components/home/constant/home.constant';
+import { Button } from '@/components/ui/button';
+import { VARIANT } from '@/lib/shared.constant';
 
 export default function Home() {
     return (
         <main className="w-full">
-            <section className="border w-full h-screen">
+            <section className="w-full h-screen">
                 <div className="flex items-center justify-end h-full w-full bg-banner">
                     <div
                         className="space-y-[36px] bg-primary-light pt-[62px] pb-[38px] px-[42px] mr-[58px] rounded-[10px]">
@@ -43,6 +45,33 @@ export default function Home() {
                             </div>
                         </Link>
                     ) ) }
+                </div>
+            </section>
+            <section className="px-[85px] w-full my-[56px]">
+                <div className="w-full flex flex-col items-center">
+                    <h5>Popular Items</h5>
+                </div>
+                <div className="grid grid-cols-4 gap-[30px] mt-[40px]">
+                    { [1,2,3,4,5,6,7,8].map( (item) => (
+                       <div className="w-[285px] border group rounded-sm" key={item}>
+                          <Link href={`/shop/${item}`}>
+                              <div className="relative h-[301px] w-full">
+                                  <Image src='/images/living.webp' alt='dummy' fill className='object-cover' />
+                              </div>
+                              <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]">
+                                  <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">Syltherine</p>
+                                  <p className="font-[400] text-[12px]">Stylish cafe chair</p>
+                                  <div className='flex space-x-[12px] items-center'>
+                                      <span className="font-[600] text-[14px]">Nu. 25000.00</span>
+                                      <s className="text-typo-dark/50 text-[12px]">Nu. 1500.00</s>
+                                  </div>
+                              </div>
+                          </Link>
+                       </div>
+                    ) ) }
+                </div>
+                <div className="w-full flex justify-center mt-8">
+                    <Link href='/shop' className={VARIANT['outlined']}>View More</Link>
                 </div>
             </section>
         </main>

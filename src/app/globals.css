@@ -82,7 +82,7 @@
     @apply text-[14px] font-[700] leading-[21px] tracking-[0.25px] lg:text-[20px] lg:font-[700] lg:leading-[30px] lg:tracking-[0.25px];
   }
   p {
-    @apply text-base leading-relaxed text-gray-700 mb-4;
+    @apply text-base leading-relaxed text-gray-700 mb-1;
   }
   body {
     @apply bg-background text-foreground;
