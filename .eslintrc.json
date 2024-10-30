@@ -1,3 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "quotes": ["error", "single"],
+    "no-debugger": "error",
+    "no-console": "error",
+    "semi": "error",
+    "no-unused-vars": "error"
+  }
 }
