@@ -27,7 +27,7 @@ function Header() {
     const {replace} = useRouter();
     const [searchKey, setSearchKey] = useState('');
 
-    const handleSearch = (e) => {
+    const handleSearch = (e: { key: string }) => {
         if ( e.key === 'Enter' ) {
             setOpen(false)
             replace(`/shop?${searchKey.toString()}`);
@@ -46,12 +46,12 @@ function Header() {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [handleScroll, lastScrollY]);
 
+    console.log(showHeader)
     return(
         <nav className={`z-[101] flex items-center justify-between px-[4%] xl:px-[6%] py-[8px] shadow transition-transform duration-300 bg-white ${showHeader ? 'translate-y-0 sticky top-0' : '-translate-y-full'}`}>
             <Link prefetch={false} href='/'>

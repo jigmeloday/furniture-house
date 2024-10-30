@@ -14,11 +14,15 @@ const config: Config = {
                 foreground: 'hsl(var(--foreground))',
                 primary: {
                     DEFAULT: '#B88E2F',
-                    foreground: '#ffffff'
+                    foreground: '#ffffff',
+                    light: '#FFF3E3'
                 },
                 secondary: {
                     DEFAULT: 'hsl(var(--secondary))',
                     foreground: 'hsl(var(--secondary-foreground))'
+                },
+                typo: {
+                    dark: '#333333'
                 },
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',
@@ -36,6 +40,10 @@ const config: Config = {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)'
+            },
+            backgroundImage: {
+                'cover-section': "url('/images/cover.webp')",
+                'banner': "url('/images/banner.webp')",
             }
         }
     },
