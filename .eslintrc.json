@@ -1,22 +1,10 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "no-console": "warn",
-    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-    "prefer-const": "warn",
-    "eqeqeq": ["error", "always"],
-    "@typescript-eslint/no-explicit-any": "warn",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
     "quotes": ["error", "single"],
-    "import/no-anonymous-default-export": "warn",
-    "import/order": ["warn", { "groups": ["builtin", "external", "internal"], "newlines-between": "always" }]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    "no-debugger": "error",
+    "no-console": "error",
+    "semi": "error",
+    "no-unused-vars": "error"
   }
 }

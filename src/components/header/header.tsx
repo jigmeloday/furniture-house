@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { HEADER_ICONS, HEADER_LINK } from '@/components/header/header.constant';
+import { DialogContent, Dialog, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import Search from '@/components/header/search';
 
 function Header() {
     const pathName = usePathname();
@@ -51,18 +53,27 @@ function Header() {
                     ))
                 }
             </ol>
-            <ol className='space-x-[24px] hidden lg:flex'>
+            <Dialog>
+                <ol className='space-x-[24px] hidden lg:flex'>
 
-                {
-                    HEADER_ICONS.map(({ id, icon: IconComponent, link }) => (
-                        <li key={id} className='cursor-pointer'>
-                            <Link href={link} className='pb-[4px] transition duration-300 ease-in-out'>
-                                <IconComponent />
-                            </Link>
-                        </li>
-                    ))
-                }
-            </ol>
+                    {
+                        HEADER_ICONS.map(({ id, icon: IconComponent, link }) => (
+                            id === 'search' ?
+                                <li key={id} className='cursor-pointer'>
+                                    <div className='pb-[4px] transition duration-300 ease-in-out'>
+                                       <DialogTrigger> <IconComponent /></DialogTrigger>
+                                    </div>
+                                </li> :
+                                <li key={id} className='cursor-pointer'>
+                                    <Link href={link} className='pb-[4px] transition duration-300 ease-in-out'>
+                                        <IconComponent />
+                                    </Link>
+                                </li>
+                        ))
+                    }
+                </ol>
+                <Search />
+            </Dialog>
             <div className='lg:hidden'>
                 {/*<Sheet>*/}
                 {/*    <SheetTrigger asChild>*/}
@@ -73,6 +84,7 @@ function Header() {
                 {/*    <SideNav />*/}
                 {/*</Sheet>*/}
             </div>
+
         </nav>
     )
 }

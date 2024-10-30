@@ -26,22 +26,22 @@ export const HEADER_LINK = [
 export const HEADER_ICONS = [
 
     {
-        id: 2,
+        id: 'search',
         icon: Search,
-        link: '/shop'
+
     },
     {
-        id: 4,
+        id: 'cart',
         icon: ShoppingCart,
         link: '/cart'
     },
     {
-        id: 3,
+        id: 'fav',
         icon: Heart,
         link: '/collections'
     },
     {
-        id: 1,
+        id: 'user',
         icon: User,
         link: '/profile'
     },
