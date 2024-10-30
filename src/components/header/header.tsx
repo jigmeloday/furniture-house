@@ -1,28 +1,48 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { HEADER_ICONS, HEADER_LINK } from '@/components/header/header.constant';
-import { DialogContent, Dialog, DialogTrigger, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import Search from '@/components/header/search';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
+    Sheet,
+    SheetTrigger
+} from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
+import SideNav from '@/components/side-nav/side-nav';
 
 function Header() {
-    const pathName = usePathname();
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [isOpen, setOpen] = useState(false);
+    const pathName = usePathname();
+    const {replace} = useRouter();
+    const [searchKey, setSearchKey] = useState('');
 
+    const handleSearch = (e) => {
+        if ( e.key === 'Enter' ) {
+            setOpen(false)
+            replace(`/shop?${searchKey.toString()}`);
+        }
+    }
+    
     const handleScroll = useCallback(() => {
         const currentScrollY = window.scrollY;
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            // Hide header when scrolling down
             setShowHeader(false);
         } else {
-            // Show header when scrolling up
             setShowHeader(true);
         }
         setLastScrollY(currentScrollY);
     }, [lastScrollY]);
-
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -53,15 +73,15 @@ function Header() {
                     ))
                 }
             </ol>
-            <Dialog>
+            <Dialog open={isOpen}>
                 <ol className='space-x-[24px] hidden lg:flex'>
 
                     {
                         HEADER_ICONS.map(({ id, icon: IconComponent, link }) => (
                             id === 'search' ?
                                 <li key={id} className='cursor-pointer'>
-                                    <div className='pb-[4px] transition duration-300 ease-in-out'>
-                                       <DialogTrigger> <IconComponent /></DialogTrigger>
+                                    <div onClick={() => setOpen(true)} className='pb-[4px] transition duration-300 ease-in-out'>
+                                       <IconComponent />
                                     </div>
                                 </li> :
                                 <li key={id} className='cursor-pointer'>
@@ -72,17 +92,24 @@ function Header() {
                         ))
                     }
                 </ol>
-                <Search />
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle/>
+                        <DialogDescription>
+                            <Input placeholder='Search...' className='mt-4' onChange={(e) => setSearchKey(e.target.value)} onKeyDown={handleSearch} />
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
             </Dialog>
             <div className='lg:hidden'>
-                {/*<Sheet>*/}
-                {/*    <SheetTrigger asChild>*/}
-                {/*        <Button variant='ghost'>*/}
-                {/*            <FaBars className='text-[28px] text-black-mid cursor-pointer' />*/}
-                {/*        </Button>*/}
-                {/*    </SheetTrigger>*/}
-                {/*    <SideNav />*/}
-                {/*</Sheet>*/}
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant='ghost'>
+                            <Menu className='cursor-pointer !h-[30px] !w-[30px] text-primary' />
+                        </Button>
+                    </SheetTrigger>
+                    <SideNav />
+                </Sheet>
             </div>
 
         </nav>
