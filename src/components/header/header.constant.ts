@@ -36,11 +36,6 @@ export const HEADER_ICONS = [
         link: '/cart'
     },
     {
-        id: 'fav',
-        icon: Heart,
-        link: '/collections'
-    },
-    {
         id: 'user',
         icon: User,
         link: '/profile'

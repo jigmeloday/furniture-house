@@ -33,7 +33,7 @@ function Header() {
             replace(`/shop?${searchKey.toString()}`);
         }
     }
-    
+
     const handleScroll = useCallback(() => {
         const currentScrollY = window.scrollY;
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -73,45 +73,46 @@ function Header() {
                     ))
                 }
             </ol>
-            <Dialog open={isOpen}>
-                <ol className='space-x-[24px] hidden lg:flex'>
+            <div className='flex items-center'>
+                <Dialog open={isOpen}>
+                    <ol className='space-x-[24px] flex '>
 
-                    {
-                        HEADER_ICONS.map(({ id, icon: IconComponent, link }) => (
-                            id === 'search' ?
-                                <li key={id} className='cursor-pointer'>
-                                    <div onClick={() => setOpen(true)} className='pb-[4px] transition duration-300 ease-in-out'>
-                                       <IconComponent />
-                                    </div>
-                                </li> :
-                                <li key={id} className='cursor-pointer'>
-                                    <Link href={link} className='pb-[4px] transition duration-300 ease-in-out'>
-                                        <IconComponent />
-                                    </Link>
-                                </li>
-                        ))
-                    }
-                </ol>
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle/>
-                        <DialogDescription>
-                            <Input placeholder='Search...' className='mt-4' onChange={(e) => setSearchKey(e.target.value)} onKeyDown={handleSearch} />
-                        </DialogDescription>
-                    </DialogHeader>
-                </DialogContent>
-            </Dialog>
-            <div className='lg:hidden'>
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <Button variant='ghost'>
-                            <Menu className='cursor-pointer !h-[30px] !w-[30px] text-primary' />
-                        </Button>
-                    </SheetTrigger>
-                    <SideNav />
-                </Sheet>
+                        {
+                            HEADER_ICONS.map(({ id, icon: IconComponent, link }) => (
+                                id === 'search' ?
+                                    <li key={id} className='cursor-pointer'>
+                                        <div onClick={() => setOpen(true)} className='pb-[4px] transition duration-300 ease-in-out'>
+                                            <IconComponent />
+                                        </div>
+                                    </li> :
+                                    <li key={id} className='cursor-pointer'>
+                                        <Link href={link} className='pb-[4px] transition duration-300 ease-in-out'>
+                                            <IconComponent />
+                                        </Link>
+                                    </li>
+                            ))
+                        }
+                    </ol>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle/>
+                            <DialogDescription>
+                                <Input placeholder='Search...' className='mt-4' onChange={(e) => setSearchKey(e.target.value)} onKeyDown={handleSearch} />
+                            </DialogDescription>
+                        </DialogHeader>
+                    </DialogContent>
+                    <div className='lg:hidden'>
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant='ghost'>
+                                    <Menu className='cursor-pointer !h-[30px] !w-[30px] text-primary' />
+                                </Button>
+                            </SheetTrigger>
+                            <SideNav />
+                        </Sheet>
+                    </div>
+                </Dialog>
             </div>
-
         </nav>
     )
 }
