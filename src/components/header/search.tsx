@@ -11,7 +11,6 @@ function Search() {
 
     const handleSearch = (e) => {
         if ( e.key === 'Enter' ) {
-            console.log(pathname)
             replace(`/shop?${searchKey.toString()}`);
         }
     }

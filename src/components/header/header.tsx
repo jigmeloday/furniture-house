@@ -51,7 +51,6 @@ function Header() {
         };
     }, [handleScroll, lastScrollY]);
 
-    console.log(showHeader)
     return(
         <nav className={`z-[101] flex items-center justify-between px-[4%] xl:px-[6%] py-[8px] shadow transition-transform duration-300 bg-white ${showHeader ? 'translate-y-0 sticky top-0' : '-translate-y-full'}`}>
             <Link prefetch={false} href='/'>
