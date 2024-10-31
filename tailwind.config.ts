@@ -15,7 +15,8 @@ const config: Config = {
                 primary: {
                     DEFAULT: '#B88E2F',
                     foreground: '#ffffff',
-                    light: '#FFF3E3'
+                    light: '#FFF3E3',
+                    lighter: '#FCF8F3',
                 },
                 secondary: {
                     DEFAULT: 'hsl(var(--secondary))',
