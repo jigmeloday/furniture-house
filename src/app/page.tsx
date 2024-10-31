@@ -3,10 +3,15 @@ import Image from 'next/image';
 import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import Swapper from '@/components/home/swapper';
-import { Heart, ShoppingCart } from 'lucide-react';
 import ShopCard from '@/components/shop-card/shop-card';
+import { fetchTopProducts } from '@/lib/server-actions/shop-action';
+import { PopularOrder, ShopItem } from '@/lib/schema';
+import { createClient } from '@/lib/supbase/server';
 
-export default function Home() {
+export default async function Home() {
+    const data: PopularOrder[]  = await fetchTopProducts()
+    const {data: { user }} = await (await createClient()).auth.getUser();
+
     return (
         <main className="w-full">
             <section className="w-full h-screen">
@@ -62,8 +67,8 @@ export default function Home() {
                     <h4>Popular Items</h4>
                 </div>
                 <div className="grid grid-col sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[40px]">
-                    { [ 1, 2, 3, 4, 5, 6, 7, 8 ].map( ( item ) => (
-                        <ShopCard item={item} />
+                    { data?.map( ( item: PopularOrder & ShopItem ) => (
+                        <ShopCard item={item} user={user} />
                     ) ) }
                 </div>
                 <div className="w-full flex justify-center mt-8">

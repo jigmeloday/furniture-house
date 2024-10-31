@@ -19,7 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import SideNav from '@/components/side-nav/side-nav';
 
-function Header() {
+function Header({ user }: unknown) {
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isOpen, setOpen] = useState(false);
@@ -85,7 +85,7 @@ function Header() {
                                         </div>
                                     </li> :
                                     <li key={id} className='cursor-pointer'>
-                                        <Link href={link} className='pb-[4px] transition duration-300 ease-in-out'>
+                                        <Link href={link === '/profile' && !user ? '/login' : link} className='pb-[4px] transition duration-300 ease-in-out'>
                                             <IconComponent />
                                         </Link>
                                     </li>
