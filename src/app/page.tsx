@@ -4,6 +4,7 @@ import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import Swapper from '@/components/home/swapper';
 import { Heart, ShoppingCart } from 'lucide-react';
+import ShopCard from '@/components/shop-card/shop-card';
 
 export default function Home() {
     return (
@@ -62,35 +63,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-col sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[40px]">
                     { [ 1, 2, 3, 4, 5, 6, 7, 8 ].map( ( item ) => (
-                        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item }>
-                                <div className="relative h-[301px] w-full">
-                                    <Image src="/images/living.webp" alt="dummy" fill className="object-cover transition-all"/>
-                                    {
-                                        item % 2 === 0 ? (<div
-                                            className="h-10 w-10 flex items-center justify-center rounded-full absolute z-[10] top-4 right-4 bg-primary-light/70">
-                                      <span className="text-[12px] font-[800] text-primary text-center">
-                                          { item % 4 ? <>20%</> : <>New</> }
-                                      </span>
-                                        </div>) : null
-                                    }
-                                    <div className="z-[20] justify-center items-center bg-primary-lighter/80 min-h-full w-full absolute flex bottom-0 group-hover:top-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                                        <div className="flex space-x-[12px]">
-                                            <ShoppingCart className="text-primary cursor-pointer" />
-                                            <Heart fill={'#B88E2F'} className="text-primary cursor-pointer"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <Link href={`/shop/${item}`}>
-                                    <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
-                                        <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">Syltherine</p>
-                                        <p className="font-[400] text-[12px]">Stylish cafe chair</p>
-                                        <div className="flex space-x-[12px] items-center">
-                                            <span className="font-[600] text-[14px]">Nu. 25000.00</span>
-                                            <s className="text-typo-dark/50 text-[12px]">Nu. 1500.00</s>
-                                        </div>
-                                    </div>
-                                </Link>
-                        </div>
+                        <ShopCard item={item} />
                     ) ) }
                 </div>
                 <div className="w-full flex justify-center mt-8">
