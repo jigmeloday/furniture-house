@@ -4,35 +4,56 @@ import { Heart, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { ShopCardProps } from '@/components/shop-card/model/shop-card.model';
 import { useState } from 'react';
+import { addFavorite } from '@/lib/server-actions/add-fav-action';
 
-function ShopCard({ item }:ShopCardProps) {
-    const [like, setLike] = useState(false);
+function ShopCard({ item, user }:ShopCardProps) {
+    const [like, setLike] = useState(item?.is_favorite);
+
+    const handleLike = async () => {
+        if ( user ) {
+            try {
+                const data = {
+                    item_id: item.item_id,
+                }
+                const response = await addFavorite(data)
+                if ( response  ) {
+                    setLike(!like)
+                }
+            } catch ( error ) {
+
+            }
+        }
+        alert("need to sign up")
+    }
+
     return(
-        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item }>
+        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item?.item_id || item?.id }>
             <div className="relative h-[301px] w-full">
                 <Image src="/images/living.webp" alt="dummy" fill className="object-cover transition-all"/>
                 {
-                    item % 2 === 0 ? (<div
+                    item.discount ? (<div
                         className="h-10 w-10 flex items-center justify-center rounded-full absolute z-[10] top-4 right-4 bg-primary-light/70">
                                       <span className="text-[12px] font-[800] text-primary text-center">
-                                          { item % 4 ? <>20%</> : <>New</> }
+                                          { item?.discount_percentage }
                                       </span>
                     </div>) : null
                 }
                 <div className="z-[20] justify-center items-center bg-primary-lighter/80 min-h-full w-full absolute flex bottom-0 group-hover:top-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="flex space-x-[12px]">
                         <ShoppingCart className="text-primary cursor-pointer" />
-                        <Heart fill={like? '#B88E2F' : 'transparent'} className="text-primary cursor-pointer"/>
+                        <Heart fill={like? '#B88E2F' : 'transparent'} className="text-primary cursor-pointer" onClick={handleLike}/>
                     </div>
                 </div>
             </div>
-            <Link href={`/shop/${item}`}>
+            <Link href={`/shop/${item.item_id || item.id}`}>
                 <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
-                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">Syltherine</p>
-                    <p className="font-[400] text-[12px]">Stylish cafe chair</p>
+                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.name}</p>
+                    <p className="font-[400] text-[12px]">{item?.store_name}</p>
                     <div className="flex space-x-[12px] items-center">
-                        <span className="font-[600] text-[14px]">Nu. 25000.00</span>
-                        <s className="text-typo-dark/50 text-[12px]">Nu. 1500.00</s>
+                        <span className="font-[600] text-[14px]">{item?.price}</span>
+                        {
+                            item.discount ? ( <s className="text-typo-dark/50 text-[12px]">{item.discount}</s>) : null
+                        }
                     </div>
                 </div>
             </Link>
