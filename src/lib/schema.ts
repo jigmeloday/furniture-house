@@ -7,7 +7,8 @@ export interface ShopItem {
     quantity: number;
     sku: number;
     category: string;
-    created_at: string
+    created_at: string;
+    favorite_id: number
 }
 
 export interface Store{
@@ -29,6 +30,7 @@ export interface PopularOrder {
     item_id: string;
     repeat_count: number;
     name: string;
+    favorite_id: number;
     price: number;
     discount: number;
     discount_percentage: number;

@@ -8,7 +8,7 @@ export async function addFavorite(fav_id, item_id, uid) {
         .rpc('toggle_favorite', {
             fav_id,
             item_id,
-            uid : '123123'
+            uid
         })
     if (error) console.error(error)
     else return data

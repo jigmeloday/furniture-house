@@ -12,10 +12,8 @@ function ShopCard({ item, user }:ShopCardProps) {
     const handleLike = async () => {
         if ( user ) {
             try {
-                const data = {
-                    item_id: item.item_id,
-                }
-                const response = await addFavorite(data)
+
+                const response = await addFavorite(item.favorite_id || null, item.item_id, user.id)
                 if ( response  ) {
                     setLike(!like)
                 }
@@ -23,7 +21,7 @@ function ShopCard({ item, user }:ShopCardProps) {
 
             }
         }
-        alert("need to sign up")
+        else alert("need to sign up")
     }
 
     return(
@@ -34,7 +32,7 @@ function ShopCard({ item, user }:ShopCardProps) {
                     item.discount ? (<div
                         className="h-10 w-10 flex items-center justify-center rounded-full absolute z-[10] top-4 right-4 bg-primary-light/70">
                                       <span className="text-[12px] font-[800] text-primary text-center">
-                                          { item?.discount_percentage }
+                                          {item?.discount_percentage}%
                                       </span>
                     </div>) : null
                 }
@@ -47,12 +45,12 @@ function ShopCard({ item, user }:ShopCardProps) {
             </div>
             <Link href={`/shop/${item.item_id || item.id}`}>
                 <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
-                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.name}</p>
-                    <p className="font-[400] text-[12px]">{item?.store_name}</p>
+                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name}</p>
+                    <p className="font-[400] text-[12px]">{item?.name}</p>
                     <div className="flex space-x-[12px] items-center">
-                        <span className="font-[600] text-[14px]">{item?.price}</span>
+                        <span className="font-[600] text-[14px]">Nu.{item?.price}</span>
                         {
-                            item.discount ? ( <s className="text-typo-dark/50 text-[12px]">{item.discount}</s>) : null
+                            item.discount ? ( <s className="text-typo-dark/50 text-[12px]">Nu.{item.discount}</s>) : null
                         }
                     </div>
                 </div>
