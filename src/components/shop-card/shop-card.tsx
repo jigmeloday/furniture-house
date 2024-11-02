@@ -12,13 +12,13 @@ function ShopCard({ item, user }:ShopCardProps) {
     const handleLike = async () => {
         if ( user ) {
             try {
-
-                const response = await addFavorite(item.favorite_id || null, item.item_id, user.id)
+                const response = await addFavorite( item.item_id )
                 if ( response  ) {
                     setLike(!like)
                 }
-            } catch ( error ) {
 
+            } catch ( error ) {
+                console.log(error)
             }
         }
         else alert("need to sign up")

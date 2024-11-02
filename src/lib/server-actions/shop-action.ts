@@ -1,3 +1,4 @@
+'use server';
 import { createClient } from '@/lib/supbase/server';
 
 export async function fetchTopProducts() {

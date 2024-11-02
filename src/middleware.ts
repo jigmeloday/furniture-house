@@ -1,8 +1,19 @@
 import { type NextRequest } from 'next/server'
-import { updateSession } from '@/utils/supabase/middleware'
+import { updateSession } from '@/lib/supbase/middleware';
+import { createClient } from '@/lib/supbase/server';
 
 export async function middleware(request: NextRequest) {
     // update user's auth session
+    const {data: { user }} = await (await createClient()).auth.getUser();
+
+    if ( !user && request.nextUrl.pathname.startsWith('/profile') ) {
+        return Response.redirect(new URL('/auth', request.url))
+    }
+
+    if ( user && request.nextUrl.pathname.startsWith('/auth') ) {
+        return Response.redirect(new URL('/', request.url))
+    }
+
     return await updateSession(request)
 }
 
