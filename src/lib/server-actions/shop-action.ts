@@ -9,3 +9,16 @@ export async function fetchTopProducts() {
     if (error) console.error(error)
     else return(data)
 }
+
+export async function fetchShop(page, page_size) {
+    const supabase = await createClient()
+
+    let { data, error } = await supabase
+        .rpc('fetch_items', {
+            page,
+            page_size
+        })
+    if (error) console.error(error)
+    else  return(data);
+
+}
