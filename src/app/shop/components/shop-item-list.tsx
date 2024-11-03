@@ -6,7 +6,7 @@ function ShopItemList({ data, user }) {
         <div className="px-[16px] sm:px-[85px] pt-[46px] pb-[85] space-y-[24px] mb-[24px]">
             <div className="grid grid-cols md:grid-cols-4">
                 {
-                    data.map((item) => (
+                    data?.map((item) => (
                         <ShopCard item={item} user={user} />
                     ))
                 }

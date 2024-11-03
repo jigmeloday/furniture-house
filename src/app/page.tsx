@@ -46,7 +46,7 @@ export default async function Home() {
                 </div>
                 <div className="grid grid-col md:grid-cols-3 md:gap-[30px] mt-[20px] sm:mt-[40px]">
                     { CATEGORY.map( ( { id, image, label } ) => (
-                        <Link href={ `/shop?${ id }` } key={ id }>
+                        <Link href={ `/shop?category=${encodeURIComponent(id)}` } key={ id }>
                             <div className="flex flex-col space-y-[8px] items-center">
                                 <div
                                     className="relative h-[300px] w-full md:h-[340px] xl:h-[480px] xl:w-[380px] overflow-hidden rounded-sm">
