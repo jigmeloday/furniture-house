@@ -1,7 +1,7 @@
 export interface ShopItem {
     id: string;
     sid: string;
-    name: string;
+    item_name: string;
     price: number;
     description: number;
     quantity: number;

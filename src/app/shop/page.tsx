@@ -1,6 +1,12 @@
-function Page() {
+import BannerSection from '@/components/banner-section/banner-section';
+import ShopWrapper from '@/app/shop/components/shop-wrapper';
+
+async function Page() {
     return(
-        <>Shop</>
+        <main>
+            <BannerSection title="Shop" />
+            <ShopWrapper />
+        </main>
     )
 }
 

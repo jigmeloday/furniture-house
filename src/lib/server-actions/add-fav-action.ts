@@ -1,16 +1,18 @@
 'use server';
 import { createClient } from '@/lib/supbase/server';
 
-export async function addFavorite(fav_id, item_id, uid) {
+export async function addFavorite(item_id) {
     const supabase = await createClient();
 
     let { data, error } = await supabase
         .rpc('toggle_favorite', {
-            fav_id,
-            item_id,
-            uid
+            p_item_id:item_id,
         })
     if (error) console.error(error)
-    else return data
+
+    else {
+        console.log(data)
+        return data
+    }
 
 }

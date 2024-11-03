@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import {zodResolver} from '@hookform/resolvers/zod'
 import { userCredentialsSchema } from '@/lib/validation';
 import { useForm } from 'react-hook-form';
-import { login } from '@/lib/server-actions/login';
+import { login } from '@/lib/server-actions/auth';
 import { useRouter } from 'next/navigation';
 
 function Login() {
