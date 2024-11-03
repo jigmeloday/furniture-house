@@ -7,6 +7,7 @@ import { fetchStore, fetchTopProducts } from '@/lib/server-actions/shop-action';
 import { PopularOrder, ShopItem } from '@/lib/schema';
 import { createClient } from '@/lib/supbase/server';
 import Swapper from '@/components/home/swapper';
+import SetupShow from '@/components/home/setup-show';
 
 export default async function Home() {
     const data: PopularOrder[]  = await fetchTopProducts();
@@ -94,6 +95,14 @@ export default async function Home() {
                     </div>
                    <Swapper store={store} />
                 </div>
+            </section>
+
+            <section className="w-full my-[28px] sm:my-[56px]">
+                <div className="w-full flex flex-col items-center text-center">
+                    <span className="text-typo-dark/70 text-[12px] sm:text-[14px] font-[400]">Share your setup with</span>
+                    <h4>#FuniroFurniture</h4>
+                </div>
+                <SetupShow />
             </section>
         </main>
     );
