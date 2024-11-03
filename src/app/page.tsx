@@ -3,13 +3,14 @@ import Image from 'next/image';
 import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import ShopCard from '@/components/shop-card/shop-card';
-import { fetchTopProducts } from '@/lib/server-actions/shop-action';
+import { fetchStore, fetchTopProducts } from '@/lib/server-actions/shop-action';
 import { PopularOrder, ShopItem } from '@/lib/schema';
 import { createClient } from '@/lib/supbase/server';
 import Swapper from '@/components/home/swapper';
 
 export default async function Home() {
-    const data: PopularOrder[]  = await fetchTopProducts()
+    const data: PopularOrder[]  = await fetchTopProducts();
+    const store  = await fetchStore();
     const {data: { user }} = await (await createClient()).auth.getUser();
 
     return (
@@ -75,6 +76,23 @@ export default async function Home() {
                 </div>
                 <div className="w-full flex justify-center mt-8">
                     <Link href="/shop" className={ VARIANT[ 'outlined' ] }>View More</Link>
+                </div>
+            </section>
+
+            <section className="w-full my-[28px] sm:my-[56px]">
+                <div className="flex items-center py-[44px] pl-[16px] sm:pl-[85px] bg-primary-lighter space-x-[24px]">
+                    <div className="h-full w-[422px] space-y-[24px]">
+                        <div>
+                            <h4>Stunning Products from Top Stores!</h4>
+                            <span className="text-[14px] text-typo-dark/70">Discover over 50 handpicked, stunning products from top stores to inspire your style and elevate your space! </span>
+                        </div>
+                        <div>
+                            <Link href="/store" className={VARIANT['contain']}>
+                                Explore More
+                            </Link>
+                        </div>
+                    </div>
+                   <Swapper store={store} />
                 </div>
             </section>
         </main>

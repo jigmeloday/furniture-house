@@ -12,11 +12,13 @@ export interface ShopItem {
 }
 
 export interface Store{
+    cover: string | null;
+    created_at: string;
+    description: string;
     id: string;
+    logo: string | null;
     name: string;
-    logo:string
-    created_at: string
-
+    products: string[];
 }
 
 export interface Order{
