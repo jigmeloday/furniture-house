@@ -9,7 +9,7 @@ export const HEADER_LINK = [
     {
         id: 2,
         label: 'Store',
-        link: '/shop'
+        link: '/store'
     },
     {
         id: 3,

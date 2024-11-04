@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Store } from '@/lib/schema';
 import Link from 'next/link';
 
-function Swapper({ store }: Store[]) {
+function Swapper({ store }) {
 
     return (
         <div className="relative w-[300px] h-[200px] md:w-[980px] md:h-[400px] overflow-x-auto hide-scroll">

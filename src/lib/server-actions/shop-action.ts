@@ -26,17 +26,4 @@ export async function fetchShop(page, page_size, item_category, store_filter, di
         })
     if (error) console.error(error)
     else return(data)
-
-
-}
-
-export async function fetchStore() {
-    const supabase = await createClient()
-
-    let { data, error } = await supabase.from('store')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(8);
-    if ( error ) console.error(error)
-    else return data
 }

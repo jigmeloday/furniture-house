@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import ShopCard from '@/components/shop-card/shop-card';
-import { fetchStore, fetchTopProducts } from '@/lib/server-actions/shop-action';
+import { fetchTopProducts } from '@/lib/server-actions/shop-action';
 import { PopularOrder, ShopItem } from '@/lib/schema';
 import { createClient } from '@/lib/supbase/server';
 import Swapper from '@/components/home/swapper';
 import SetupShow from '@/components/home/setup-show';
+import { fetchStore } from '@/lib/server-actions/store-action';
 
 export default async function Home() {
     const data: PopularOrder[]  = await fetchTopProducts();

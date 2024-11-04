@@ -1,5 +1,6 @@
 import ShopCard from '@/components/shop-card/shop-card';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 function ShopItemList({ data, user }) {
     return(
