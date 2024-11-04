@@ -4,15 +4,15 @@ import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import ShopCard from '@/components/shop-card/shop-card';
 import { fetchTopProducts } from '@/lib/server-actions/shop-action';
-import { PopularOrder, ShopItem } from '@/lib/schema';
+import { PopularOrder, ShopItem, Store } from '@/lib/schema';
 import { createClient } from '@/lib/supbase/server';
 import Swapper from '@/components/home/swapper';
 import SetupShow from '@/components/home/setup-show';
 import { fetchStore } from '@/lib/server-actions/store-action';
 
 export default async function Home() {
-    const data: PopularOrder[]  = await fetchTopProducts();
-    const store  = await fetchStore();
+    const data  = await fetchTopProducts();
+    const store  = await fetchStore() as Store[];
     const {data: { user }} = await (await createClient()).auth.getUser();
 
     return (
@@ -71,7 +71,7 @@ export default async function Home() {
                 </div>
                 <div className="grid grid-col sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[40px]">
                     { data?.map( ( item: PopularOrder & ShopItem ) => (
-                        <div key={item.id}>
+                        <div key={item.id || item.item_id}>
                             <ShopCard item={item} user={user} />
                         </div>
                     ) ) }

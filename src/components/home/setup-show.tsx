@@ -1,20 +1,19 @@
 'use client';
 import Image from 'next/image';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export default function SetupShow() {
-    const text = "Framer Motion "; // The text to scroll
 
     return (
         <div className="overflow-hidden whitespace-nowrap">
             <motion.div
                 className="inline-block w-full flex items-center justify-between space-x-[16px]"
-                animate={{ x: ["0%", "-100%" ] }} // Animate to create the scroll effect
+                animate={{ x: ['0%', '-100%' ] }} // Animate to create the scroll effect
                 transition={{
                     duration: 500, // Total duration for a full scroll
-                    ease: "linear",
+                    ease: 'linear',
                     repeat: Infinity,
-                    repeatType: "loop" // Loop the animation
+                    repeatType: 'loop' // Loop the animation
                 }}
             >
                 <div className="flex flex-col space-y-[16px]">

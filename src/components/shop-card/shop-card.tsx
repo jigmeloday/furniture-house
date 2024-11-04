@@ -2,30 +2,30 @@
 import Image from 'next/image';
 import { Heart, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
-import { ShopCardProps } from '@/components/shop-card/model/shop-card.model';
 import { useState } from 'react';
 import { addFavorite } from '@/lib/server-actions/add-fav-action';
+import { PopularOrder, User } from '@/lib/schema';
 
-function ShopCard({ item, user }:ShopCardProps) {
+function ShopCard(props:{item: (PopularOrder), user: User | null}) {
+    const {item, user} = props;
     const [like, setLike] = useState(item?.is_favorite);
-
     const handleLike = async () => {
         if ( user ) {
             try {
-                const response = await addFavorite( item.item_id )
+                const response = await addFavorite( item.item_id  );
                 if ( response  ) {
-                    setLike(!like)
+                    setLike(!like);
                 }
 
             } catch ( error ) {
-                console.log(error)
+                console.log(error);
             }
         }
-        else alert("need to sign up")
-    }
+        else alert('need to sign up');
+    };
 
     return(
-        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item?.item_id || item?.id }>
+        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item?.item_id }>
             <div className="relative h-[301px] w-full">
                 <Image src="/images/living.webp" alt="dummy" fill className="object-cover transition-all"/>
                 {
@@ -56,7 +56,7 @@ function ShopCard({ item, user }:ShopCardProps) {
                 </div>
             </Link>
         </div>
-    )
+    );
 }
 
 export default ShopCard;

@@ -9,6 +9,7 @@ export interface ShopItem {
     category: string;
     created_at: string;
     favorite_id: number
+    is_favorite: boolean;
 }
 
 export interface Store{
@@ -38,6 +39,10 @@ export interface PopularOrder {
     discount_percentage: number;
     store_name: string;
     is_favorite: boolean;
+}
+
+export interface User {
+    id: string;
 }
 
 export type Params = { slug: string }
