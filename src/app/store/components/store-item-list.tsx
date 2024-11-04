@@ -1,13 +1,14 @@
 import { Button } from '@/components/ui/button';
+import { Store } from '@/lib/schema';
 import Image from 'next/image';
 
-function StoreItemList({ data, user }) {
+function StoreItemList({ data }: { data: Store[] }) {
     return(
         <div className="px-[16px] sm:px-[85px] pt-[46px] pb-[85] space-y-[24px] mb-[24px]">
             <div className="grid grid-cols md:grid-cols-4">
                 {
                     data?.map((item) => (
-                        <div className="relative min-h-[224px] w-[295px] border rounded-md overflow-hidden">
+                        <div className="relative min-h-[224px] w-[295px] border rounded-md overflow-hidden" key={item.id}>
                             <div className="relative h-[123px] w-full overflow-hidden">
                                 <Image src='/images/dinning.webp' alt="store" fill className="object-cover" />
                             </div>
@@ -34,7 +35,7 @@ function StoreItemList({ data, user }) {
                 <Button variant="outline">Load More</Button>
             </div>
         </div>
-    )
+    );
 }
 
 export default StoreItemList;

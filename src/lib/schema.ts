@@ -39,3 +39,7 @@ export interface PopularOrder {
     store_name: string;
     is_favorite: boolean;
 }
+
+export type Params = { slug: string }
+
+export type SearchParams = { [key: string]: string | string[] | undefined }

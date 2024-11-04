@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Store } from '@/lib/schema';
 import Link from 'next/link';
 
-function Swapper({ store }) {
+function Swapper({ store }: { store: Store[]}) {
 
     return (
         <div className="relative w-[300px] h-[200px] md:w-[980px] md:h-[400px] overflow-x-auto hide-scroll">
@@ -14,7 +14,7 @@ function Swapper({ store }) {
                         <Link href={`/store/${item.id}`} key={item.id}>
                             <div className="relative h-full w-[140px] md:w-[340px] rounded-md overflow-hidden group transition duration-300 ease-in-out">
                                 <Image
-                                    src={`/images/dinning.webp`}
+                                    src={'/images/dinning.webp'}
                                     alt="img"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     fill
