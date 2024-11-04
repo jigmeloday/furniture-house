@@ -17,3 +17,15 @@ export async function fetchStore(page = 1, pageSize = 8, searchQuery = '') {
 
     return data;
 }
+
+export async function fetchStoreItems(store_id: string, page: number, page_size: number) {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .rpc('get_store_details', { page, page_size, store_id });
+
+    if (error) return error;
+    else return data;
+
+
+}

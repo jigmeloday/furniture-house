@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Store } from '@/lib/schema';
 import Image from 'next/image';
+import Link from 'next/link';
 
 function StoreItemList({ data }: { data: Store[] }) {
     return(
@@ -9,6 +10,7 @@ function StoreItemList({ data }: { data: Store[] }) {
                 {
                     data?.map((item) => (
                         <div className="relative min-h-[224px] w-[295px] border rounded-md overflow-hidden" key={item.id}>
+                            <Link href={`store/${item.id}`}>
                             <div className="relative h-[123px] w-full overflow-hidden">
                                 <Image src='/images/dinning.webp' alt="store" fill className="object-cover" />
                             </div>
@@ -27,6 +29,7 @@ function StoreItemList({ data }: { data: Store[] }) {
                                     ))}
                                 </div>
                             </div>
+                            </Link>
                         </div>
                     ))
                 }

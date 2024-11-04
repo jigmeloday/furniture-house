@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { addFavorite } from '@/lib/server-actions/add-fav-action';
 import { PopularOrder, User } from '@/lib/schema';
 
-function ShopCard(props:{item: (PopularOrder), user: User | null}) {
-    const {item, user} = props;
+function ShopCard(props:{item: (PopularOrder), user: User | null, store?: string}) {
+    const {item, user, store} = props;
     const [like, setLike] = useState(item?.is_favorite);
     const handleLike = async () => {
         if ( user ) {
@@ -45,7 +45,7 @@ function ShopCard(props:{item: (PopularOrder), user: User | null}) {
             </div>
             <Link href={`/shop/${item.item_id || item.id}`}>
                 <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
-                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name}</p>
+                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name || store}</p>
                     <p className="font-[400] text-[12px]">{item?.name || item?.item_name}</p>
                     <div className="flex space-x-[12px] items-center">
                         <span className="font-[600] text-[14px]">Nu.{item?.price}</span>
