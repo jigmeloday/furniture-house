@@ -14,10 +14,10 @@ return(
         <section className="relative">
           <div className="relative">
           <div className="relative h-[320px]">
-            <Image src='/images/dinning.webp' alt='cover' fill className="object-cover" />
+            <Image src={store.cover || '/images/dinning.webp'} alt='cover' fill className="object-cover" />
           </div>
           <div className="flex overflow-hidden justify-center items-center bg-white h-[140px] w-[140px] border absolute -bottom-[60px] left-8 rounded-full">
-            <Image src="/logo/ikea.svg" alt="logo" fill className="object-cover"/>
+            <Image src={store.logo || "/logo/ikea.svg"} alt="logo" fill className="object-conte"/>
           </div>
           </div>
           <div className="flex justify-end my-[16px] ">
@@ -40,7 +40,7 @@ return(
          <div className="grid grid-cols md:grid-cols-3 lg:grid-cols-4">
           {
             store.items?.map((item: PopularOrder) => (
-              <div key={item.item_id}>
+              <div key={item?.item_id}>
                 <ShopCard user={user} item={item} store={store.name} />
               </div>
             ))
