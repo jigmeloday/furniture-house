@@ -19,7 +19,7 @@ export const HEADER_LINK = [
     {
         id: 4,
         label: 'Contact',
-        link: '/shop'
+        link: '/contact-us'
     }
 ];
 
