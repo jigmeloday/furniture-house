@@ -59,28 +59,29 @@ function Page() {
           <section className="mt-[24px">
             <div className="flex flex-col items-center px-[16px] sm:px-[85px] py-[42px]">
               <h1>Meet Our Team</h1>
-              <div className="grid grid-cols-4 gap-[32px] mt-[24px]">
+              <p className="text-[14px] my-[16px] w-[580px] text-center font-[600] text-typo-dark/70">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+              <div className="grid grid-cols-4 gap-[32px] mt-[42px]">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="h-[140px] w-[140px] border rounded-full">
-
+                  <div className="relative h-[180px] w-[180px] border rounded-full overflow-hidden">
+                    <Image src="/images/p1.webp" alt="profile" fill className="object-cover" />
                   </div>
                   <span className="font-extrabold text-primary">Jimmy James</span>
                 </div>
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="h-[140px] w-[140px] border rounded-full">
-
+                  <div className="relative h-[180px] w-[180px] border rounded-full overflow-hidden">
+                    <Image src="/images/p2.webp" alt="profile" fill className="object-cover" />
                   </div>
                   <span className="font-extrabold text-primary">Sept Curry </span>
                 </div>
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="h-[140px] w-[140px] border rounded-full">
-
+                  <div className="relative h-[180px] w-[180px] border rounded-full overflow-hidden">
+                    <Image src="/images/p3.webp" alt="profile" fill className="object-cover" />
                   </div>
                   <span className="font-extrabold text-primary">Harden Lebron</span>
                 </div>
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="h-[140px] w-[140px] border rounded-full">
-
+                  <div className="relative h-[180px] w-[180px] border rounded-full overflow-hidden">
+                    <Image src="/images/p4.webp" alt="profile" fill className="object-cover" />
                   </div>
                   <span className="font-extrabold text-primary">Mosi Bluter</span>
                 </div>
