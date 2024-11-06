@@ -9,7 +9,7 @@ function ShopItemList({ data, user }: { data: PopularOrder[], user: User | null 
             <div className="grid grid-cols md:grid-cols-4">
                 {
                     data?.map((item) => (
-                        <div key={item.id}>
+                        <div key={item.item_id}>
                             <ShopCard item={item} user={user} />
                         </div>
                     ))
@@ -19,7 +19,7 @@ function ShopItemList({ data, user }: { data: PopularOrder[], user: User | null 
                 <Button variant="outline">Load More</Button>
             </div>
         </div>
-    )
+    );
 }
 
 export default ShopItemList;

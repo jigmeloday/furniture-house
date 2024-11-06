@@ -45,6 +45,13 @@ export interface User {
     id: string;
 }
 
+export interface ContactForm {
+    email: string;
+    name: string;
+    subject: string;
+    message:string
+}
+
 export type Params = { slug: string }
 
 export type SearchParams = { [key: string]: string | string[] | undefined }

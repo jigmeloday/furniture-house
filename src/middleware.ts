@@ -1,4 +1,4 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest } from 'next/server';
 import { updateSession } from '@/lib/supbase/middleware';
 import { createClient } from '@/lib/supbase/server';
 
@@ -7,14 +7,14 @@ export async function middleware(request: NextRequest) {
     const {data: { user }} = await (await createClient()).auth.getUser();
 
     if ( !user && request.nextUrl.pathname.startsWith('/profile') ) {
-        return Response.redirect(new URL('/auth', request.url))
+        return Response.redirect(new URL('/auth', request.url));
     }
 
     if ( user && request.nextUrl.pathname.startsWith('/auth') ) {
-        return Response.redirect(new URL('/', request.url))
+        return Response.redirect(new URL('/', request.url));
     }
 
-    return await updateSession(request)
+    return await updateSession(request);
 }
 
 export const config = {
@@ -28,4 +28,4 @@ export const config = {
          */
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
-}
+};

@@ -1,7 +1,7 @@
 'use client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import {zodResolver} from '@hookform/resolvers/zod'
+import {zodResolver} from '@hookform/resolvers/zod';
 import { userCredentialsSchema } from '@/lib/validation';
 import { useForm } from 'react-hook-form';
 import { login } from '@/lib/server-actions/auth';
@@ -17,12 +17,12 @@ function Login() {
     } = useForm({
         resolver: zodResolver(userCredentialsSchema),
     });
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: unknown) => {
         try {
-            await login(data)
-            route.push('/')
+            await login(data as { email: string, password: string });
+            route.push('/');
         } catch ( error ) {
-
+            alert(error);
         }
     };
     return(
@@ -31,23 +31,23 @@ function Login() {
                 <Input
                     placeholder="Email"
                     type="email"
-                    {...register("email")}
+                    {...register('email')}
                 />
-                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                {errors.email && <p className="text-red-500">{errors.email.message as string}</p>}
             </div>
 
             <div>
                 <Input
                     placeholder="Password"
                     type="password"
-                    {...register("password")}
+                    {...register('password')}
                 />
-                {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+                {errors.password && <p className="text-red-500">{errors.password.message as string}</p>}
             </div>
 
             <Button type="submit">Sign In</Button>
         </form>
-    )
+    );
 }
 
 export default Login;

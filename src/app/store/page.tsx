@@ -3,7 +3,7 @@ import Filter from '@/components/filter/filter';
 import StoreWrapper from '@/app/store/components/store-wrapper';
 import { SearchParams } from '@/lib/schema';
 
-async function Page(props: { searchParams: SearchParams }){
+async function Page(props: { searchParams: Promise<SearchParams> }){
     const searchParam = await props.searchParams;
 
     return(
