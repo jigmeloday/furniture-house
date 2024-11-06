@@ -1,10 +1,11 @@
 'use server';
 import { createClient } from '@/lib/supbase/server';
+import { ContactForm } from '../schema';
 
-export async function contactUs( formData ) {
+export async function contactUs( formData: ContactForm ) {
   const supabase = await createClient();
   
-  const { data, error } = await supabase
+  const { error } = await supabase
   .from('contact')
   .insert([{
     name: formData.name,
@@ -14,11 +15,9 @@ export async function contactUs( formData ) {
   }]);
 
   if (error) {
-      console.error(error)
+      throw error;
   }
-  if( data) {
-    console.log(data)
-  }
+  
   return {
       message: 'Success',
   };

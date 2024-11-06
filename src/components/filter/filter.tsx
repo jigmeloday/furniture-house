@@ -11,22 +11,22 @@ function Filter() {
 
     const [category, setCategory] = useState('');
     useEffect(() => {
-        const categoryType = searchParam.get('category')
+        const categoryType = searchParam.get('category');
         setCategory(categoryType ?? '');
-    }, [])
+    }, [searchParam]);
 
     const handleSearch = (search: string) => {
         const params = new URLSearchParams(location.search);
-        const value = search.toLowerCase()
+        const value = search.toLowerCase();
         if ( value ) {
             params.set('query', value);
         } else {
             params.delete('query');
         }
         replace(`${pathname}?${params.toString()}`);
-    }
+    };
 
-    const applyFilter = (value, type) => {
+    const applyFilter = (value: string, type: string) => {
         const params = new URLSearchParams(location.search);
         if (type === 'category') {
             if (value === 'clear') {
@@ -44,7 +44,7 @@ function Filter() {
             }
         }
         replace(`${pathname}?${params.toString()}`);
-    }
+    };
 
 
     return(
@@ -124,7 +124,7 @@ function Filter() {
                </SelectContent>
            </Select>
        </div>
-    )
+    );
 }
 
 export default Filter;

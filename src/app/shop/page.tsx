@@ -3,7 +3,7 @@ import ShopWrapper from '@/app/shop/components/shop-wrapper';
 import Filter from '@/components/filter/filter';
 import { SearchParams } from '@/lib/schema';
 
-async function Page(props: { searchParams: SearchParams }) {
+async function Page(props: { searchParams: Promise<SearchParams> }) {
     const searchParam = await props.searchParams;
     const category = searchParam.category;
     const store = searchParam.store;
@@ -15,7 +15,7 @@ async function Page(props: { searchParams: SearchParams }) {
         <main>
             <BannerSection title="Shop" />
             <Filter />
-            <ShopWrapper category={category} store={store} price={price} discount={discount} sort={sort} />
+            <ShopWrapper category={category as string} store={store as string} price={price as string} discount={discount as string} sort={sort as string} />
         </main>
     );
 }

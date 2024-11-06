@@ -2,7 +2,7 @@
 import { createClient } from '@/lib/supbase/server';
 import { redirect } from 'next/navigation';
 
-export async function login( formData) {
+export async function login( formData:{ email: string; password: string } ) {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.email,
@@ -24,6 +24,6 @@ export async function login( formData) {
 
 export async function signOut() {
     const supabase = await createClient();
-    const { error } = supabase.auth.signOut();
-    redirect('/')
+    supabase.auth.signOut();
+    redirect('/');
 }

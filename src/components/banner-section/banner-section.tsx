@@ -1,9 +1,9 @@
 'use client';
 import { ChevronRight } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-function BannerSection({ title }){
+function BannerSection({ title }: { title: string }){
     const pathname = usePathname();
     const pathArray = pathname.split('/').filter((segment) => segment);
 
@@ -35,7 +35,7 @@ function BannerSection({ title }){
                 })}
             </div>
         </div>
-    )
+    );
 }
 
 export default BannerSection;

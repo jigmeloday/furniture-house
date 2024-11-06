@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { ContactForm } from '@/lib/schema';
 import { contactUs } from '@/lib/server-actions/contact-action';
 import { constactSchema } from '@/lib/validation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,12 +18,12 @@ function Form() {
     resolver: zodResolver(constactSchema),
 });
 
-const onSubmit = async (data) => {
+const onSubmit = async (data: unknown) => {
   try {
-      await contactUs(data);
+      await contactUs(data as ContactForm);
       reset();
   } catch ( error ) {
-
+    alert(error);
   }
 };
   return(

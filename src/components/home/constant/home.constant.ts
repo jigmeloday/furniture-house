@@ -14,4 +14,4 @@ export const CATEGORY= [
         image: '/images/dinning.webp',
         label: 'Dinning'
     }
-]
+];

@@ -18,7 +18,7 @@ function ShopCard(props:{item: (PopularOrder), user: User | null, store?: string
                 }
 
             } catch ( error ) {
-                console.log(error);
+               alert(error);
             }
         }
         else alert('need to sign up');
@@ -43,10 +43,10 @@ function ShopCard(props:{item: (PopularOrder), user: User | null, store?: string
                     </div>
                 </div>
             </div>
-            <Link href={`/shop/${item.item_id || item.id}`}>
+            <Link href={`/shop/${item.item_id}`}>
                 <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
                     <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name || store}</p>
-                    <p className="font-[400] text-[12px]">{item?.name || item?.item_name}</p>
+                    <p className="font-[400] text-[12px]">{item?.name}</p>
                     <div className="flex space-x-[12px] items-center">
                         <span className="font-[600] text-[14px]">Nu.{item?.price}</span>
                         {

@@ -54,7 +54,7 @@ export default async function Home() {
                                     <Image src={ image } alt="category" fill
                                            className="object-cover transition duration-300 ease-in-out hover:scale-110 cursor-pointer"/>
                                 </div>
-                                <span className="font-[600] text-[14] sm:text-[16] text-typo-dark/80">
+                                <span className="font-[600] text-[14px] sm:text-[16] text-typo-dark/80">
                                 { label }
                             </span>
                             </div>

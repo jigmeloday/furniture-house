@@ -4,9 +4,9 @@ import { fetchStoreItems } from '@/lib/server-actions/store-action';
 import { createClient } from '@/lib/supbase/server';
 import Image from 'next/image';
 
-async function Page(props: { params: Params }) {
-const id = await props.params.slug;
-const store = await fetchStoreItems(id, 1, 10);
+async function Page(props: { params: Promise<Params> }) {
+const param = await props.params;
+const store = await fetchStoreItems(param.slug, 1, 10);
 const {data: { user }} = await (await createClient()).auth.getUser();
 
 return(
@@ -17,7 +17,7 @@ return(
             <Image src={store.cover || '/images/dinning.webp'} alt='cover' fill className="object-cover" />
           </div>
           <div className="flex overflow-hidden justify-center items-center bg-white h-[140px] w-[140px] border absolute -bottom-[60px] left-8 rounded-full">
-            <Image src={store.logo || "/logo/ikea.svg"} alt="logo" fill className="object-conte"/>
+            <Image src={store.logo || '/logo/ikea.svg'} alt="logo" fill className="object-conte"/>
           </div>
           </div>
           <div className="flex justify-end my-[16px] ">

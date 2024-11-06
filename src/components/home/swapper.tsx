@@ -23,7 +23,7 @@ function Swapper({ store }: { store: Store[]}) {
                                 <div className="absolute bottom-4 z-[1] left-4 right-4">
                                    <div className="flex items-center space-x-[4px]">
                                        <div className="relative h-[24px] w-[24px] bg-white rounded-full overflow-hidden">
-                                           <Image src={ item.logo || "/logo/ikea.svg"} alt="logo" fill className="object-fill" />
+                                           <Image src={ item.logo || '/logo/ikea.svg'} alt="logo" fill className="object-fill" />
                                        </div>
                                        <h6 className="text-primary-light">
                                            {item.name}
