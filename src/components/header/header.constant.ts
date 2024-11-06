@@ -1,4 +1,4 @@
-import { Heart, Search, User, ShoppingCart } from 'lucide-react';
+import { Search, User, ShoppingCart } from 'lucide-react';
 
 export const HEADER_LINK = [
     {
@@ -9,19 +9,19 @@ export const HEADER_LINK = [
     {
         id: 2,
         label: 'Store',
-        link: '/shop'
+        link: '/store'
     },
     {
         id: 3,
         label: 'About',
-        link: '/shop'
+        link: '/about-us'
     },
     {
         id: 4,
         label: 'Contact',
-        link: '/shop'
+        link: '/contact-us'
     }
-]
+];
 
 export const HEADER_ICONS = [
 
@@ -40,4 +40,4 @@ export const HEADER_ICONS = [
         icon: User,
         link: '/profile'
     },
-]
+];

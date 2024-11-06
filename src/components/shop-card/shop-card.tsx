@@ -2,30 +2,30 @@
 import Image from 'next/image';
 import { Heart, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
-import { ShopCardProps } from '@/components/shop-card/model/shop-card.model';
 import { useState } from 'react';
 import { addFavorite } from '@/lib/server-actions/add-fav-action';
+import { PopularOrder, User } from '@/lib/schema';
 
-function ShopCard({ item, user }:ShopCardProps) {
+function ShopCard(props:{item: (PopularOrder), user: User | null, store?: string}) {
+    const {item, user, store} = props;
     const [like, setLike] = useState(item?.is_favorite);
-
     const handleLike = async () => {
         if ( user ) {
             try {
-                const response = await addFavorite( item.item_id )
+                const response = await addFavorite( item.item_id  );
                 if ( response  ) {
-                    setLike(!like)
+                    setLike(!like);
                 }
 
             } catch ( error ) {
-                console.log(error)
+                console.log(error);
             }
         }
-        else alert("need to sign up")
-    }
+        else alert('need to sign up');
+    };
 
     return(
-        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item?.item_id || item?.id }>
+        <div className="w-full xl:w-[285px] border group rounded-sm" key={ item?.item_id }>
             <div className="relative h-[301px] w-full">
                 <Image src="/images/living.webp" alt="dummy" fill className="object-cover transition-all"/>
                 {
@@ -45,7 +45,7 @@ function ShopCard({ item, user }:ShopCardProps) {
             </div>
             <Link href={`/shop/${item.item_id || item.id}`}>
                 <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
-                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name}</p>
+                    <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">{item?.store_name || store}</p>
                     <p className="font-[400] text-[12px]">{item?.name || item?.item_name}</p>
                     <div className="flex space-x-[12px] items-center">
                         <span className="font-[600] text-[14px]">Nu.{item?.price}</span>
@@ -56,7 +56,7 @@ function ShopCard({ item, user }:ShopCardProps) {
                 </div>
             </Link>
         </div>
-    )
+    );
 }
 
 export default ShopCard;

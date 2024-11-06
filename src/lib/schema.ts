@@ -9,14 +9,17 @@ export interface ShopItem {
     category: string;
     created_at: string;
     favorite_id: number
+    is_favorite: boolean;
 }
 
 export interface Store{
+    cover: string | null;
+    created_at: string;
+    description: string;
     id: string;
+    logo: string | null;
     name: string;
-    logo:string
-    created_at: string
-
+    products: string[];
 }
 
 export interface Order{
@@ -37,3 +40,11 @@ export interface PopularOrder {
     store_name: string;
     is_favorite: boolean;
 }
+
+export interface User {
+    id: string;
+}
+
+export type Params = { slug: string }
+
+export type SearchParams = { [key: string]: string | string[] | undefined }

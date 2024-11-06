@@ -10,15 +10,20 @@ export async function fetchTopProducts() {
     else return(data)
 }
 
-export async function fetchShop(page, page_size) {
+export async function fetchShop(page, page_size, item_category, store_filter, discount_filter, price_filter, sort_order, search_query?:string) {
     const supabase = await createClient()
 
     let { data, error } = await supabase
         .rpc('fetch_items', {
+            discount_filter,
+            item_category,
             page,
-            page_size
+            page_size,
+            price_filter,
+            search_query,
+            sort_order,
+            store_filter
         })
     if (error) console.error(error)
-    else  return(data);
-
+    else return(data)
 }

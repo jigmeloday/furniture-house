@@ -18,8 +18,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import SideNav from '@/components/side-nav/side-nav';
+import { User } from '@/lib/schema';
 
-function Header({ user }: unknown) {
+function Header({ user }: { user: User | null }) {
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isOpen, setOpen] = useState(false);
@@ -29,10 +30,10 @@ function Header({ user }: unknown) {
 
     const handleSearch = (e: { key: string }) => {
         if ( e.key === 'Enter' ) {
-            setOpen(false)
+            setOpen(false);
             replace(`/shop?${searchKey.toString()}`);
         }
-    }
+    };
 
     const handleScroll = useCallback(() => {
         const currentScrollY = window.scrollY;
@@ -85,7 +86,7 @@ function Header({ user }: unknown) {
                                         </div>
                                     </li> :
                                     <li key={id} className='cursor-pointer'>
-                                        <Link href={link === '/profile' && !user ? '/login' : link} className='pb-[4px] transition duration-300 ease-in-out'>
+                                        <Link href={link === '/profile' && !user ? '/login' : link as string} className='pb-[4px] transition duration-300 ease-in-out'>
                                             <IconComponent />
                                         </Link>
                                     </li>
@@ -113,7 +114,7 @@ function Header({ user }: unknown) {
                 </Dialog>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Header;

@@ -4,12 +4,15 @@ import { CATEGORY } from '@/components/home/constant/home.constant';
 import { VARIANT } from '@/lib/shared.constant';
 import ShopCard from '@/components/shop-card/shop-card';
 import { fetchTopProducts } from '@/lib/server-actions/shop-action';
-import { PopularOrder, ShopItem } from '@/lib/schema';
+import { PopularOrder, ShopItem, Store } from '@/lib/schema';
 import { createClient } from '@/lib/supbase/server';
 import Swapper from '@/components/home/swapper';
+import SetupShow from '@/components/home/setup-show';
+import { fetchStore } from '@/lib/server-actions/store-action';
 
 export default async function Home() {
-    const data: PopularOrder[]  = await fetchTopProducts()
+    const data  = await fetchTopProducts();
+    const store  = await fetchStore() as Store[];
     const {data: { user }} = await (await createClient()).auth.getUser();
 
     return (
@@ -44,7 +47,7 @@ export default async function Home() {
                 </div>
                 <div className="grid grid-col md:grid-cols-3 md:gap-[30px] mt-[20px] sm:mt-[40px]">
                     { CATEGORY.map( ( { id, image, label } ) => (
-                        <Link href={ `/shop?${ id }` } key={ id }>
+                        <Link href={ `/shop?category=${encodeURIComponent(id)}` } key={ id }>
                             <div className="flex flex-col space-y-[8px] items-center">
                                 <div
                                     className="relative h-[300px] w-full md:h-[340px] xl:h-[480px] xl:w-[380px] overflow-hidden rounded-sm">
@@ -68,7 +71,7 @@ export default async function Home() {
                 </div>
                 <div className="grid grid-col sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-[20px] mt-[40px]">
                     { data?.map( ( item: PopularOrder & ShopItem ) => (
-                        <div key={item.id}>
+                        <div key={item.id || item.item_id}>
                             <ShopCard item={item} user={user} />
                         </div>
                     ) ) }
@@ -76,6 +79,31 @@ export default async function Home() {
                 <div className="w-full flex justify-center mt-8">
                     <Link href="/shop" className={ VARIANT[ 'outlined' ] }>View More</Link>
                 </div>
+            </section>
+
+            <section className="w-full my-[28px] sm:my-[56px]">
+                <div className="flex items-center py-[44px] pl-[16px] sm:pl-[85px] bg-primary-lighter space-x-[24px]">
+                    <div className="h-full w-[422px] space-y-[24px]">
+                        <div>
+                            <h4>Stunning Products from Top Stores!</h4>
+                            <span className="text-[14px] text-typo-dark/70">Discover over 50 handpicked, stunning products from top stores to inspire your style and elevate your space! </span>
+                        </div>
+                        <div>
+                            <Link href="/store" className={VARIANT['contain']}>
+                                Explore More
+                            </Link>
+                        </div>
+                    </div>
+                   <Swapper store={store} />
+                </div>
+            </section>
+
+            <section className="w-full my-[28px] sm:my-[56px]">
+                <div className="w-full flex flex-col items-center text-center">
+                    <span className="text-typo-dark/70 text-[12px] sm:text-[14px] font-[400]">Share your setup with</span>
+                    <h4>#FuniroFurniture</h4>
+                </div>
+                <SetupShow />
             </section>
         </main>
     );
