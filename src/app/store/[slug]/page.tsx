@@ -1,5 +1,5 @@
 import ShopCard from '@/components/shop-card/shop-card';
-import { Params, PopularOrder } from '@/lib/schema';
+import { Params, PopularOrder, ShopItem } from '@/lib/schema';
 import { fetchStoreItems } from '@/lib/server-actions/store-action';
 import { createClient } from '@/lib/supbase/server';
 import Image from 'next/image';
@@ -41,7 +41,7 @@ return(
           {
             store.items?.map((item: PopularOrder) => (
               <div key={item?.item_id}>
-                <ShopCard user={user} item={item} store={store.name} />
+                <ShopCard user={user} item={item as (PopularOrder & ShopItem)} store={store.name} />
               </div>
             ))
             }
