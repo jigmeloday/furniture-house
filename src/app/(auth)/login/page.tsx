@@ -1,15 +1,13 @@
-import Image from 'next/image';
 import Login from '@/app/(auth)/login/components/login';
 
 function Page() {
     return(
-        <div className="flex justify-center items-center h-screen w-full">
-            <div className="flex items-center py-16 px-12 shadow-md rounded-md bg-primary-lighter space-x-[16px]">
-                <Login />
-                <div className="flex items-center justify-center w-[340px] relative h-[240px]">
-                    <Image src='/images/living.webp' alt='sign-in' fill className="object-cover" />
-                </div>
+        <div className="space-y-[24px]">
+            <div className="space-y-[2px]">
+            <h3>Sign In</h3>
+            <p className="text-typo-dark/70 text-[12px] font-semibold ml-1">Welcome Back!</p>
             </div>
+            <Login />
         </div>
     );
 }

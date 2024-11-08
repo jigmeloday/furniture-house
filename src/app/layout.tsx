@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 
 import './globals.css';
 import HeaderWrapper from '@/components/header/header-wrapper';
+import { Toaster } from '@/components/ui/toaster';
 
 const geistSans = localFont( {
     src: './fonts/GeistVF.woff',
@@ -28,6 +29,7 @@ export default function RootLayout( {
     return (
         <html lang="en">
         <body className={ `${ geistSans.variable } ${ geistMono.variable } antialiased` }>
+        <Toaster />
         <HeaderWrapper/>
         { children }
         </body>
