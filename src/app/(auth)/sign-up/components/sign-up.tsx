@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -24,11 +25,11 @@ function SignUp() {
         try {
             await signUp(data as { email: string, password: string });
             route.push('/login');
-        } catch ( error ) {
+        } catch ( error: any ) {
             toast({
               variant: 'destructive',
               title: 'Uh oh! Something went wrong.',
-              description: error as string,
+              description: error.message as string,
             });
         }
     };

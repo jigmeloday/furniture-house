@@ -23,7 +23,8 @@ function Login() {
         try {
             await login(data as { email: string, password: string });
             route.push('/');
-        } catch ( error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch ( error: any) {
             toast({
                 variant: 'destructive',
                 title: 'Uh oh! Something went wrong.',
