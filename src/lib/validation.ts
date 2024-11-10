@@ -61,12 +61,14 @@ export const updatePasswordSchema = z
       .regex(/[@$!%*?&#]/, {
         message: 'Password must contain at least one special character',
       }),
-      confirmPassword: z.string()}).superRefine(({ password, confirmPassword }, ctx) => {
-        if (password !== confirmPassword) {
-        ctx.addIssue({
-            code: "custom", // Add this line to specify the issue type
-            path: ["confirmPassword"],
-            message: "Passwords do not match"
-        });
-  }
+    confirmPassword: z.string(),
+  })
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        code: 'custom', // Add this line to specify the issue type
+        path: ['confirmPassword'],
+        message: 'Passwords do not match',
+      });
+    }
   });

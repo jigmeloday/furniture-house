@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import UpatePassword from './components/update-password';
 
 function Page() {

@@ -6,14 +6,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { userCredentialsSchema } from '@/lib/validation';
 import { useForm } from 'react-hook-form';
 import { signUp } from '@/lib/server-actions/auth';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
+import { LoaderCircle } from 'lucide-react';
 
 function SignUp() {
   const { toast } = useToast();
-  const route = useRouter();
-  const [laoding, setLoading] = useState(false);
+//   const route = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -26,8 +27,12 @@ function SignUp() {
     setLoading(true);
     try {
       await signUp(data as { email: string; password: string });
-      
-      route.push('/login');
+
+      toast({
+        variant: 'success',
+        title: 'Sign Up Success',
+        description: 'A confirmation link has been sent to your email inbox'
+      });
     } catch (error: any) {
       toast({
         variant: 'destructive',
@@ -63,9 +68,12 @@ function SignUp() {
           </p>
         )}
       </div>
-
-      <Button disabled={laoding} type="submit">
-        Sign Up
+      <Button disabled={loading} type="submit">
+        {loading ? (
+          <LoaderCircle className="animate-spin" />
+        ) : (
+          <span>Sign In</span>
+        )}
       </Button>
     </form>
   );

@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { updatePasswordSchema } from '@/lib/validation';
 import { useForm } from 'react-hook-form';
 import { updatePassword } from '@/lib/server-actions/auth';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
 function UpatePassword() {
-  const route = useRouter();
+  // const route = useRouter();
   const { toast } = useToast();
 
   const {

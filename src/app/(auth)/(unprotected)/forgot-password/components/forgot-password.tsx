@@ -4,15 +4,15 @@ import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { forgotPasswordSchema } from '@/lib/validation';
 import { useForm } from 'react-hook-form';
-import { forgotPassword, login } from '@/lib/server-actions/auth';
-import { useRouter } from 'next/navigation';
+import { forgotPassword } from '@/lib/server-actions/auth';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
+import { LoaderCircle } from 'lucide-react';
 
 function ForgotPassword() {
   // const route = useRouter();
   const { toast } = useToast();
-  const [ loading, setLoading ] = useState(false)
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -21,13 +21,18 @@ function ForgotPassword() {
     resolver: zodResolver(forgotPasswordSchema),
   });
   const onSubmit = async (data: unknown) => {
-    setLoading(true)
+    setLoading(true);
     try {
       await forgotPassword(data as { email: string });
+      toast({
+        variant: 'success',
+        title: 'Request Success',
+        description: 'A reset password link has been sent to your email.'
+      });
       // route.push('/');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setLoading(false)
+      setLoading(false);
       toast({
         variant: 'destructive',
         title: 'Uh oh! Something went wrong.',
@@ -48,7 +53,13 @@ function ForgotPassword() {
           </p>
         )}
       </div>
-      <Button disabled={loading} type="submit">Sign In</Button>
+      <Button disabled={loading} type="submit">
+        {loading ? (
+          <LoaderCircle className="animate-spin" />
+        ) : (
+          <span>Request Link</span>
+        )}
+      </Button>
     </form>
   );
 }

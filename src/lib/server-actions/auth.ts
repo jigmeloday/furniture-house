@@ -28,8 +28,8 @@ export async function signUp(formData: { email: string; password: string }) {
 
   if (error) {
     throw error;
-  }
-  console.log(data)
+  };
+
   return {
     message: 'Success',
     session: data.session,
@@ -45,18 +45,19 @@ export async function forgotPassword(formData: { email: string }) {
 
   if (error) {
     throw error;
-  }
+  };
 }
 
 export async function updatePassword(formData: { password: string }) {
   const supabase = await createClient();
 
-  const { data, error } = await supabase.auth.updateUser({
+  const { error } = await supabase.auth.updateUser({
     password: formData.password,
   });
+
   if (error) {
     throw error;
-  }
+  };
 }
 
 export async function signOut() {

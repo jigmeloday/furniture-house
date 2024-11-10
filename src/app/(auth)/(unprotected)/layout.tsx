@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { headers } from 'next/headers';
 import Image from 'next/image';
 import { ReactElement } from 'react';
 
