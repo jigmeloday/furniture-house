@@ -14,6 +14,14 @@ export async function middleware(request: NextRequest) {
         return Response.redirect(new URL('/', request.url));
     }
 
+    // if (
+
+    //     (request.nextUrl.pathname === '/update-password' && request.nextUrl.search.includes('error'))
+    //   ) {
+    //     // Redirect to home page if the condition is met
+    //     return Response.redirect(new URL('/', request.url));
+    //   }
+
     return await updateSession(request);
 }
 
