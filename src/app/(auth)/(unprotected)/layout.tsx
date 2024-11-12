@@ -4,10 +4,9 @@ import Image from 'next/image';
 import { ReactElement } from 'react';
 
 async function Layout({ children }: { children: ReactElement }) {
-  
   return (
-    <div className="flex min-h-screen">
-      <div className="w-[60%]">
+    <div className="flex min-h-screen w-full">
+      <div className="hidden md:flex sm:w-[40%] xl:w-[60%]">
         <div className="h-full w-full relative">
           <Image
             src="/images/living.webp"
@@ -17,7 +16,7 @@ async function Layout({ children }: { children: ReactElement }) {
           />
         </div>
       </div>
-      <div className="flex flex-col justify-center w-[40%] border px-[42px]">
+      <div className="flex flex-col justify-center w-full sm:w-[60%] xl:w-[40%] px-[42px]">
         {children}
         <div className="space-y-[24px] mt-[24px]">
           <div className="flex items-center w-full space-x-[16px]">
