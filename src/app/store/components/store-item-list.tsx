@@ -4,9 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 function StoreItemList({ data }: { data: Store[] }) {
+  
   return (
     <div className="px-[16px] sm:px-[85px] pt-[46px] pb-[85] space-y-[24px] mb-[24px]">
-      <div className="grid grid-cols md:grid-cols-4">
+      <div className="grid grid-cols md:grid-cols-4 gap-6">
         {data?.map((item) => (
           <div
             className="relative min-h-[224px] w-[295px] border rounded-md overflow-hidden"
@@ -35,7 +36,7 @@ function StoreItemList({ data }: { data: Store[] }) {
                 <div className="h-full mt-[44px] space-y-[12px]">
                   <h5 className="text-dark/80">{item.name}</h5>
                   <div className="flex flex-wrap gap-[4px]">
-                    {item?.products?.splice(0,3)?.map((product, index) => (
+                    {item?.products?.splice(0, 3)?.map((product, index) => (
                       <div
                         className="text-[12px] px-2 bg-primary rounded-md text-primary-lighter"
                         key={`${product}-${index}`}
@@ -49,9 +50,6 @@ function StoreItemList({ data }: { data: Store[] }) {
             </Link>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center">
-        <Button variant="outline">Load More</Button>
       </div>
     </div>
   );

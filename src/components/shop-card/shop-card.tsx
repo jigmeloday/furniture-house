@@ -25,7 +25,7 @@ function ShopCard(props: {
       }
     } else alert('need to sign up');
   };
-  
+
   return (
     <div
       className="w-full xl:w-[285px] border group rounded-sm"
@@ -56,7 +56,7 @@ function ShopCard(props: {
           </div>
         </div>
       </div>
-      <Link href={`/shop/${item.item_id}`}>
+      <Link href={`/shop/${item.item_id || item.id}`}>
         <div className="flex flex-col pt-[4px] pb-[12px] px-[16px]  cursor-pointer">
           <p className="font-[700] text-[14px] group-hover:text-primary transition duration-300">
             {item?.store_name || store}
