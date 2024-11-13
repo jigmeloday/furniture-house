@@ -15,7 +15,8 @@ async function Page(props: {
   const color = await props.searchParams;
   const product_item: ShopItem & PopularOrder = await fetchItemById(id.slug);
   const variant_option = await fetchVariantOption(
-    (color.color as unknown as number) ?? product_item.variants[0].variant_option
+    (color.color as unknown as number) ??
+      product_item.variants[0].variant_option
   );
 
   return (
@@ -44,7 +45,11 @@ async function Page(props: {
               <span>SKU</span> : <span>{product_item.sku}</span>
             </div>
             <div className="flex text-typo-dark/70 text-[14px] space-x-2">
-              <span>Category</span> : <span>{product_item.category}</span>
+              <span>Category</span> :{' '}
+              <span>
+                {product_item.category.charAt(0).toUpperCase() +
+                  product_item.category.slice(1)}
+              </span>
             </div>
             <div className="flex text-typo-dark/70 text-[14px] space-x-2">
               <span>Total</span> : <span>{product_item.quantity}</span>

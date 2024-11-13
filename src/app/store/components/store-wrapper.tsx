@@ -3,11 +3,9 @@ import StoreItemList from '@/app/store/components/store-item-list';
 import { Store } from '@/lib/schema';
 
 async function StoreWrapper({ search }: { search: string }) {
-    const data = await fetchStore(1, 10, search) as Store[];
+  const data = (await fetchStore(0, 4, search)) as Store[];
 
-    return(
-        <StoreItemList data={data} />
-    );
+  return <StoreItemList data={data} />;
 }
 
 export default StoreWrapper;
