@@ -1,11 +1,11 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-    darkMode: [ "class" ],
+    darkMode: [ 'class' ],
     content: [
-        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
@@ -43,11 +43,11 @@ const config: Config = {
                 sm: 'calc(var(--radius) - 4px)'
             },
             backgroundImage: {
-                'cover-section': "url('/images/cover.webp')",
-                'banner': "url('/images/banner.webp')",
+                'cover-section': 'url(\'/images/cover.webp\')',
+                'banner': 'url(\'/images/banner.webp\')',
             }
         }
     },
-    plugins: [ require( "tailwindcss-animate" ) ],
+    plugins: [ require( 'tailwindcss-animate' ) ],
 };
 export default config;

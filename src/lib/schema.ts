@@ -1,7 +1,15 @@
+export interface Variants {
+    id: number;
+    color: string;
+    variant_option: number
+    image: string[];
+}
+
 export interface ShopItem {
     id: string;
     sid: string;
     item_name: string;
+    cover: string;
     price: number;
     description: number;
     quantity: number;
@@ -10,6 +18,7 @@ export interface ShopItem {
     created_at: string;
     favorite_id: number
     is_favorite: boolean;
+    variants: Variants[];
 }
 
 export interface Store{
@@ -31,6 +40,7 @@ export interface Order{
 
 export interface PopularOrder {
     item_id: string;
+    cover: string;
     repeat_count: number;
     name: string;
     favorite_id: number;
