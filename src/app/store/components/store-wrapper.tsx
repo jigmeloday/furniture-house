@@ -5,7 +5,7 @@ import { Store } from '@/lib/schema';
 async function StoreWrapper({ search }: { search: string }) {
   const data = (await fetchStore(0, 4, search)) as Store[];
 
-  return <StoreItemList data={data} />;
+  return <StoreItemList data={data} key={search} />;
 }
 
 export default StoreWrapper;
