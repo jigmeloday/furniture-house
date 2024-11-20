@@ -36,6 +36,13 @@ export const constactSchema = z.object({
     .min(5, { message: 'Message must be at least 5 characters long' }),
 });
 
+export const newsLetterSchema = z.object({
+  email: z
+  .string().email({
+    message: 'Invalid Email Address'
+  })
+});
+
 export const forgotPasswordSchema = z.object({
   email: z.string().email({
     message: 'Invalid email address',
