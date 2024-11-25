@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { addFavorite } from '@/lib/server-actions/add-fav-action';
 import { PopularOrder, ShopItem, User } from '@/lib/schema';
+import { useDispatch } from 'react-redux';
+import { addItemCart } from '@/lib/slices/add-to-cart';
 
 function ShopCard(props: {
   item: PopularOrder & ShopItem;
@@ -13,6 +15,8 @@ function ShopCard(props: {
 }) {
   const { item, user, store } = props;
   const [like, setLike] = useState(item?.is_favorite);
+  const dispatch = useDispatch();
+
   const handleLike = async () => {
     if (user) {
       try {
@@ -24,6 +28,15 @@ function ShopCard(props: {
         alert(error);
       }
     } else alert('need to sign up');
+  };
+
+  const handleCart = () => {
+    dispatch(
+      addItemCart({
+        ...item,
+        id: item.id || item.item_id,
+      })
+    );
   };
 
   return (
@@ -47,7 +60,10 @@ function ShopCard(props: {
         ) : null}
         <div className="z-[20] justify-center items-center bg-primary-lighter/80 min-h-full w-full absolute flex bottom-0 group-hover:top-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
           <div className="flex space-x-[12px]">
-            <ShoppingCart className="text-primary cursor-pointer" />
+            <ShoppingCart
+              onClick={() => handleCart()}
+              className="text-primary cursor-pointer"
+            />
             <Heart
               fill={like ? '#B88E2F' : 'transparent'}
               className="text-primary cursor-pointer"
