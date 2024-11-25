@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/store/cartSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PopularOrder, ShopItem } from '../schema';

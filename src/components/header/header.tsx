@@ -33,7 +33,7 @@ function Header({ user }: { user: User | null }) {
   const { replace } = useRouter();
   const [searchKey, setSearchKey] = useState('');
   const cartItem = useSelector(selectCartItems);
-  console.log(cartItem);
+
   const handleSearch = (e: { key: string }) => {
     if (e.key === 'Enter') {
       setOpen(false);
