@@ -27,7 +27,6 @@ function SignUp() {
     setLoading(true);
     try {
       await signUp(data as { email: string; password: string });
-
       toast({
         variant: 'success',
         title: 'Sign Up Success',

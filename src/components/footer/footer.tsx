@@ -1,9 +1,8 @@
-import { User } from '@supabase/supabase-js';
 import { HEADER_LINK } from '../header/header.constant';
 import NewsLetterSubscription from './components/newsletter-subscription-form';
 
 
-function Footer({}: {user: User | null}) {
+function Footer() {
     return(
         <div className={'border-t border-black/[0.17] py-[32px] flex justify-center items-center'}>
             
@@ -11,7 +10,7 @@ function Footer({}: {user: User | null}) {
 
                 <div className={'flex justify-between pb-[24px]'}>
                     <div>
-                        <h6 className={'text-[24px] pb-[40px]'}>Funiro.</h6>
+                        <h6 className={'text-[24px] pb-[40px]'}>HomeFun</h6>
                         <div>
                             <p className={'text-black/[0.40]'}>Wangchu Taba, Babesa, Thimphu</p>
                             <p className={'text-black/[0.40]'}>11001 Bhutan</p>
@@ -45,7 +44,7 @@ function Footer({}: {user: User | null}) {
                 </div>
 
                 <div className={'pt-[24px] border-t border-black/[0.17]'}>
-                    <p>2024 furino. All rights reverved</p>
+                    <p>{new Date().getFullYear()} HomeFun.@ All rights reverved</p>
                 </div>
             </div>
         </div>

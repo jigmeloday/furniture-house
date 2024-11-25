@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { NewsLetterForm } from '@/lib/schema';
 import { NewsLetter } from '@/lib/server-actions/footer-actions';
 import { newsLetterSchema } from '@/lib/validation';
@@ -8,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 function NewsLetterSubscription() {
-
+    const { toast } = useToast();
     const {
         register,
         handleSubmit,
@@ -28,9 +29,18 @@ function NewsLetterSubscription() {
     const onSubmit = async (data: unknown) => {
         try {
             await NewsLetter(data as NewsLetterForm);
+            toast({
+                variant: 'success',
+                title: 'Subscription Success',
+                description: 'You have successfully subscribed!'
+              });
             reset();
-        } catch ( error ) {
-          alert(error);
+        } catch ( error: any ) {
+            toast({
+                variant: 'destructive',
+                title: 'Uh oh! Something went wrong.',
+                description: error.message as string,
+              });
         }
       };
 

@@ -4,9 +4,9 @@ import { NewsLetterForm } from '../schema';
 
 export async function NewsLetter( formData: NewsLetterForm ) {
   const supabase = await createClient();
-  
+
   const { error } = await supabase
-  .from('NewsLetter')
+  .from('newsletter')
   .insert([{
     email: formData.email,
   }]);
