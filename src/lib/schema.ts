@@ -62,6 +62,10 @@ export interface ContactForm {
     message:string
 }
 
+export interface NewsLetterForm {
+    email: string
+}
+
 export type Params = { slug: string }
 
 export type SearchParams = { [key: string]: string | string[] | undefined }
