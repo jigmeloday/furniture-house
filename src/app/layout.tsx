@@ -5,6 +5,7 @@ import './globals.css';
 import HeaderWrapper from '@/components/header/header-wrapper';
 import { Toaster } from '@/components/ui/toaster';
 import StoreProvider from './store-provider';
+import Footer from '@/components/footer/footer';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -36,6 +37,7 @@ export default function RootLayout({
        <Toaster />
         <HeaderWrapper />
         {children}
+        <Footer />
        </StoreProvider>
       </body>
     </html>
