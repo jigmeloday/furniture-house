@@ -39,7 +39,7 @@ const cartSlice = createSlice({
     removeFromCart(state, action: PayloadAction<number>) {
       state.items = state.items.filter(
         (item: any) => item.id !== action.payload
-      );
+      ) as PopularOrder[] & ShopItem[];
     },
     clearCart(state) {
       state.items = [];
