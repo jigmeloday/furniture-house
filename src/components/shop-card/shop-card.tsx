@@ -7,6 +7,7 @@ import { addFavorite } from '@/lib/server-actions/add-fav-action';
 import { PopularOrder, ShopItem, User } from '@/lib/schema';
 import { useDispatch } from 'react-redux';
 import { addItemCart } from '@/lib/slices/add-to-cart';
+import { useToast } from '@/hooks/use-toast';
 
 function ShopCard(props: {
   item: PopularOrder & ShopItem;
@@ -16,6 +17,7 @@ function ShopCard(props: {
   const { item, user, store } = props;
   const [like, setLike] = useState(item?.is_favorite);
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   const handleLike = async () => {
     if (user) {
@@ -27,7 +29,13 @@ function ShopCard(props: {
       } catch (error) {
         alert(error);
       }
-    } else alert('need to sign up');
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'You need to sign up to perform this action',
+      });
+    }
   };
 
   const handleCart = () => {
@@ -62,11 +70,11 @@ function ShopCard(props: {
           <div className="flex space-x-[12px]">
             <ShoppingCart
               onClick={() => handleCart()}
-              className="text-primary cursor-pointer"
+              className="text-primary cursor-pointer hover:text-primary/50 transition ease-in-out duration-300"
             />
             <Heart
               fill={like ? '#B88E2F' : 'transparent'}
-              className="text-primary cursor-pointer"
+              className="text-primary cursor-pointer hover:text-primary/50 transition ease-in-out duration-300"
               onClick={handleLike}
             />
           </div>

@@ -36,8 +36,7 @@ async function Page(props: {
             {product_item.description}
           </p>
           <ActionSection
-            isFavorite={product_item.is_favorite}
-            variant={product_item.variants}
+            product={product_item}
           />
           <Separator />
           <div className="space-y-2 mt-[24px]">

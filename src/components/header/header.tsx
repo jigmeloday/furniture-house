@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { HEADER_LINK } from '@/components/header/header.constant';
 import {
   Dialog,
@@ -26,8 +26,6 @@ import { useSelector } from 'react-redux';
 import { selectCartItems } from '@/lib/slices/add-to-cart';
 
 function Header({ user }: { user: User | null }) {
-  const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isOpen, setOpen] = useState(false);
   const pathName = usePathname();
   const { replace } = useRouter();
@@ -41,28 +39,11 @@ function Header({ user }: { user: User | null }) {
     }
   };
 
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      setShowHeader(false);
-    } else {
-      setShowHeader(true);
-    }
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll, lastScrollY]);
-
   return (
     <nav
-      className={`z-[101] flex items-center justify-between px-[4%] xl:px-[6%] py-[8px] shadow transition-transform duration-300 bg-white ${
-        showHeader ? 'translate-y-0 sticky top-0' : '-translate-y-full'
-      }`}
+      className={
+        'z-[101] sticky top-0 flex items-center justify-between px-[4%] xl:px-[6%] py-[8px] shadow transition-transform duration-300 bg-white'
+      }
     >
       <Link prefetch={false} href="/">
         <div className="flex items-center h-[60px] w-[52px] rounded-[0.22px] relative">
@@ -100,7 +81,7 @@ function Header({ user }: { user: User | null }) {
             </li>
             <li className="cursor-pointer">
               <Link
-                href={''}
+                href={'/cart-list'}
                 className="pb-[4px] transition duration-300 ease-in-out relative"
               >
                 {cartItem.length ? (

@@ -44,6 +44,7 @@ export interface PopularOrder {
   cover: string;
   repeat_count: number;
   name: string;
+  item_name: string;
   favorite_id: number;
   price: number;
   quantity: number;
@@ -66,7 +67,7 @@ export interface ContactForm {
 }
 
 export interface NewsLetterForm {
-    email: string
+  email: string;
 }
 
 export type Params = { slug: string };
