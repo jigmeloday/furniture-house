@@ -1,13 +1,19 @@
-import Test from '@/app/profile/components/test';
+import BannerSection from '@/components/banner-section/banner-section';
 import { createClient } from '@/lib/supbase/server';
-import { User } from '@supabase/supabase-js';
+import ProfileContainer from '@/app/profile/components/profile-container';
+import { User } from '@/lib/schema';
 
 async function Profile() {
-    const {data: { user }} = await (await createClient()).auth.getUser();
+  const {
+    data: { user },
+  } = await (await createClient()).auth.getUser();
 
-    return(
-       <Test user={user as User} />
-    );
+  return (
+    <main>
+      <BannerSection title="Profile" />
+      <ProfileContainer user={user as User}/>
+    </main>
+  );
 }
 
 export default Profile;
