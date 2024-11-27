@@ -45,12 +45,12 @@ function CartListing() {
                 </div>
                 <div className="flex space-x-2 items-center justify-center">
                   <button
-                    disabled={item.quantity <= 1}
+                    disabled={item.quantity <= 0}
                     onClick={() =>
                       dispatch(addItemCart(item as PopularOrder & ShopItem))
                     }
                     className={`px-2 rounded text-white  ${
-                      item.quantity <= 1 ? 'bg-primary/50' : 'bg-primary'
+                      item.quantity <= 0 ? 'bg-primary/50' : 'bg-primary'
                     }`}
                   >
                     +
@@ -66,7 +66,9 @@ function CartListing() {
                   </button>
                 </div>
                 <div className="flex items-center justify-center">
-                  {item.total_item * item.price}
+                  <span className="text-[12px]">
+                    Nu. {item.total_item * item.price}
+                  </span>
                 </div>
               </div>
             ))}

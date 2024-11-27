@@ -26,8 +26,12 @@ const cartSlice = createSlice({
         (item: any) => item.id === action.payload.id
       );
       if (existingItem) {
-        existingItem.total_item += 1;
-        existingItem.quantity -= 1;
+        if (existingItem.quantity >= 1) {
+          existingItem.total_item += 1;
+          existingItem.quantity -= 1;
+        } else {
+          alert('reach to limit');
+        }
       } else {
         state.items.push({
           ...action.payload,

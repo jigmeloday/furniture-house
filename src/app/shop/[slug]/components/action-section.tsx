@@ -1,6 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { PopularOrder, ShopItem, Variants } from '@/lib/schema';
+import { PopularOrder, ShopItem } from '@/lib/schema';
 import { addItemCart } from '@/lib/slices/add-to-cart';
 import { Heart } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
