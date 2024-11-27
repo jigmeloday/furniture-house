@@ -4,6 +4,7 @@ import { User } from '@/lib/schema';
 import { PROFILE_SIDE_NAV } from '../constant/profile.constant';
 import { useState } from 'react';
 import Link from 'next/link';
+import MyProfile from './my-profile';
 
 function ProfileContainer({ user }: { user: User }) {
   const [currentTab, setCurrentTab] = useState('profile');
@@ -38,20 +39,22 @@ function ProfileContainer({ user }: { user: User }) {
         </div>
         <div className="w-full border-t border-primary/10 my-[14px] pt-[8px]">
           <span className="font-bold text-[14px]">Upcoming Features</span>
-          <div className="space-y-2 mt-[8px]">
-            <p className="font-light text-[14px] text-typo-dark/60">Coupon</p>
-            <p className="font-light text-[14px] text-typo-dark/60">Coupon</p>
-            <p className="font-light text-[14px] text-typo-dark/60">Coupon</p>
+          <div className="space-y-[4px] mt-[8px]">
+            <p className="font-light text-[14px] text-typo-dark/60">Chat</p>
+            <p className="font-light text-[14px] text-typo-dark/60">
+              Notification
+            </p>
+            <p className="font-light text-[14px] text-typo-dark/60">
+              Mobile Application
+            </p>
           </div>
         </div>
         <div className="mb-[8px] text-[14px] cursor-pointer font-semibold">
           Logout
         </div>
       </div>
-      <div className="w-full border">
-        <div>hello</div>
-        <div>hello</div>
-        <div>hello</div>
+      <div className="w-full">
+        {currentTab === 'profile' ? <MyProfile /> : <></>}
       </div>
     </div>
   );

@@ -10,6 +10,10 @@ export const PROFILE_SIDE_NAV: ProfileSideNav[] = [
     label: 'My Order',
   },
   {
+    id: 'wishlist',
+    label: 'My Whislist',
+  },
+  {
     id: 'privacy',
     label: 'Privacy Policy',
     link: '/',
