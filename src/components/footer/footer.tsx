@@ -6,7 +6,7 @@ function Footer() {
     return(
         <div className={'border-t border-black/[0.17] py-[32px] flex justify-center items-center'}>
             
-            <div className={'w-[80%]'}>
+            <div className={'w-[89%]'}>
 
                 <div className={'flex justify-between pb-[24px]'}>
                     <div>

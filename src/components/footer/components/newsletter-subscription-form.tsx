@@ -35,6 +35,7 @@ function NewsLetterSubscription() {
                 description: 'You have successfully subscribed!'
               });
             reset();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch ( error: any ) {
             toast({
                 variant: 'destructive',

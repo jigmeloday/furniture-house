@@ -1,15 +1,19 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Variants } from '@/lib/schema';
+import { PopularOrder, ShopItem } from '@/lib/schema';
+import { addItemCart } from '@/lib/slices/add-to-cart';
 import { Heart } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-function ActionSection(props: { isFavorite: boolean; variant: Variants[] }) {
-  const [like, setLike] = useState(props.isFavorite);
-  const [activeColor, setActiveColor] = useState(props.variant[0].color);
+function ActionSection(props: { product: ShopItem & PopularOrder }) {
+  const { product } = props;
+  const [like, setLike] = useState(product.is_favorite);
+  const [activeColor, setActiveColor] = useState(product.variants[0].color);
   const pathname = usePathname();
   const { replace } = useRouter();
+  const dispatch = useDispatch();
   const setColor = (id: number | string, color: string) => {
     const params = new URLSearchParams();
     params.set('color', id as string);
@@ -20,7 +24,7 @@ function ActionSection(props: { isFavorite: boolean; variant: Variants[] }) {
   return (
     <div className="space-y-[24px] my-[34px]">
       <div className="flex space-x-2">
-        {props?.variant?.map(({ variant_option, color }) => (
+        {product?.variants?.map(({ variant_option, color }) => (
           <div
             className={`h-8 w-8 rounded-full border-2 cursor-pointer ${
               color === activeColor ? 'border-primary' : 'border-primary-light'
@@ -32,7 +36,7 @@ function ActionSection(props: { isFavorite: boolean; variant: Variants[] }) {
         ))}
       </div>
       <div className="flex items-center space-x-4">
-        <Button className="w-[190px]">Add to Cart</Button>
+        <Button className="w-[190px]" onClick={() => dispatch(addItemCart(product))}>Add to Cart</Button>
         <Heart
           size={32}
           fill={like ? '#B88E2F' : 'transparent'}

@@ -1,5 +1,3 @@
-import { Search, User, ShoppingCart } from 'lucide-react';
-
 export const HEADER_LINK = [
     {
         id: 1,
@@ -21,23 +19,4 @@ export const HEADER_LINK = [
         label: 'Contact',
         link: '/contact-us'
     }
-];
-
-export const HEADER_ICONS = [
-
-    {
-        id: 'search',
-        icon: Search,
-
-    },
-    {
-        id: 'cart',
-        icon: ShoppingCart,
-        link: '/cart'
-    },
-    {
-        id: 'user',
-        icon: User,
-        link: '/profile'
-    },
 ];
