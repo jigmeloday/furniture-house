@@ -27,19 +27,28 @@ const cartSlice = createSlice({
       );
       if (existingItem) {
         existingItem.total_item += 1;
-        existingItem.quantity -=1;
+        existingItem.quantity -= 1;
       } else {
         state.items.push({
           ...action.payload,
           total_item: 1,
-          quantity: action.payload.quantity - 1
+          quantity: action.payload.quantity - 1,
         });
       }
     },
-    removeFromCart(state, action: PayloadAction<number>) {
-      state.items = state.items.filter(
-        (item: any) => item.id !== action.payload
-      ) as PopularOrder[] & ShopItem[];
+    removeFromCart(state, action: PayloadAction<PopularOrder & ShopItem>) {
+      const existingItem = state.items.find(
+        (item: any) => item.id === action.payload.id
+      );
+      if (existingItem) {
+        existingItem.total_item -= 1;
+        existingItem.quantity += 1;
+        if (existingItem.total_item <= 0) {
+          state.items = state.items.filter(
+            (item: any) => item.id !== action.payload.id
+          ) as any;
+        }
+      }
     },
     clearCart(state) {
       state.items = [];
@@ -50,5 +59,10 @@ const cartSlice = createSlice({
 export const { addItemCart, removeFromCart, clearCart } = cartSlice.actions;
 
 export const selectCartItems = (state: { cart: CartState }) => state.cart.items;
+export const selectCartSubtotal = (state: { cart: CartState }) =>
+  state.cart.items.reduce(
+    (subtotal, item) => subtotal + item.price * item.total_item,
+    0
+  );
 
 export default cartSlice.reducer;

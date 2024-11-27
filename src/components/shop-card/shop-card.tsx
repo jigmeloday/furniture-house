@@ -18,6 +18,7 @@ function ShopCard(props: {
   const [like, setLike] = useState(item?.is_favorite);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const [quantity, setQuantity] = useState(item.quantity);
 
   const handleLike = async () => {
     if (user) {
@@ -39,12 +40,22 @@ function ShopCard(props: {
   };
 
   const handleCart = () => {
-    dispatch(
-      addItemCart({
-        ...item,
-        id: item.id || item.item_id,
-      })
-    );
+    if (quantity >= 1) {
+      setQuantity(quantity - 1);
+      dispatch(
+        addItemCart({
+          ...item,
+          id: item.id || item.item_id,
+        })
+      );
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'OUT OF STOCK',
+        description:
+          'You cannot add more than the available quantity in stock.',
+      });
+    }
   };
 
   return (
