@@ -1,12 +1,12 @@
 'use client';
 import { signOut } from '@/lib/server-actions/auth';
-import { User } from '@/lib/schema';
+import { ProfileModule } from '@/lib/schema';
 import { PROFILE_SIDE_NAV } from '../constant/profile.constant';
 import { useState } from 'react';
 import Link from 'next/link';
 import MyProfile from './my-profile';
 
-function ProfileContainer({ user }: { user: User }) {
+function ProfileContainer({ user }: { user: ProfileModule }) {
   const [currentTab, setCurrentTab] = useState('profile');
   return (
     <div className="flex px-[16px] sm:px-[85px] my-[24px] space-x-[24px]">
@@ -49,12 +49,12 @@ function ProfileContainer({ user }: { user: User }) {
             </p>
           </div>
         </div>
-        <div className="mb-[8px] text-[14px] cursor-pointer font-semibold">
+        <div className="mb-[8px] text-[14px] cursor-pointer font-semibold text-primary hover:text-primary/70 w-fit duration-200 transition ease-in-out">
           Logout
         </div>
       </div>
       <div className="w-full">
-        {currentTab === 'profile' ? <MyProfile /> : <></>}
+        {currentTab === 'profile' ? <MyProfile user={user} /> : <></>}
       </div>
     </div>
   );

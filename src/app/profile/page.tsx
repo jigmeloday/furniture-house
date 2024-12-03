@@ -1,17 +1,15 @@
 import BannerSection from '@/components/banner-section/banner-section';
-import { createClient } from '@/lib/supbase/server';
 import ProfileContainer from '@/app/profile/components/profile-container';
-import { User } from '@/lib/schema';
+import { ProfileModule } from '@/lib/schema';
+import { fetchProfile } from '@/lib/server-actions/profile-action';
 
 async function Profile() {
-  const {
-    data: { user },
-  } = await (await createClient()).auth.getUser();
+  const user = await fetchProfile();
 
   return (
     <main>
       <BannerSection title="Profile" />
-      <ProfileContainer user={user as User}/>
+      <ProfileContainer user={user as ProfileModule}/>
     </main>
   );
 }
