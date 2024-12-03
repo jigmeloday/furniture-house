@@ -15,7 +15,7 @@ function SignUp() {
   const { toast } = useToast();
 //   const route = useRouter();
   const [loading, setLoading] = useState(false);
-
+  
   const {
     register,
     handleSubmit,

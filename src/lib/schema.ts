@@ -56,7 +56,16 @@ export interface PopularOrder {
 }
 
 export interface User {
-  id: string;
+  id: string | number;
+  name?: string;
+  email?: string;
+  dp?: string;
+}
+
+export interface ProfileModule {
+  id: number;
+  uuid: string;
+  name: string;
 }
 
 export interface ContactForm {
@@ -68,6 +77,18 @@ export interface ContactForm {
 
 export interface NewsLetterForm {
   email: string;
+}
+
+export interface Address {
+  id: number;
+  country: string;
+  receiver_name: string;
+  phone: string;
+  street_name: string;
+  apartment: string;
+  city: string;
+  uid: string;
+  default_val: boolean;
 }
 
 export type Params = { slug: string };
