@@ -49,7 +49,10 @@ function ProfileContainer({ user }: { user: ProfileModule }) {
             </p>
           </div>
         </div>
-        <div className="mb-[8px] text-[14px] cursor-pointer font-semibold text-primary hover:text-primary/70 w-fit duration-200 transition ease-in-out">
+        <div
+          onClick={() => signOut()}
+          className="mb-[8px] text-[14px] cursor-pointer font-semibold text-primary hover:text-primary/70 w-fit duration-200 transition ease-in-out"
+        >
           Logout
         </div>
       </div>
