@@ -6,13 +6,19 @@ import { useEffect, useState } from 'react';
 import { fetchAddress } from '@/lib/server-actions/profile-action';
 import { Address, User } from '@/lib/schema';
 import Image from 'next/image';
+import ProfileEdit from './profile-edit-dialog';
 
 function MyProfile({ user }: { user: User }) {
   const [addressForm, setAddressForm] = useState(false);
   const [address, setAddress] = useState<Address[]>([]);
+  const [edit, setEdit] = useState<boolean>(false);
 
   const handleAddressForm = () => {
     setAddressForm(!addressForm);
+  };
+
+  const handleEditForm = () => {
+    setEdit(!edit);
   };
 
   useEffect(() => {
@@ -45,7 +51,7 @@ function MyProfile({ user }: { user: User }) {
           </div>
         </div>
         <Pencil
-          onClick={() => setAddressForm(true)}
+          onClick={() => setEdit(true)}
           size={14}
           className="text-primary cursor-pointer hover:text-primary/50 ease-in-out transition duration-200"
         />
@@ -120,6 +126,7 @@ function MyProfile({ user }: { user: User }) {
             Add New Address
           </Button>
           <AddressFormDialog isOpen={addressForm} setOpen={handleAddressForm} />
+          <ProfileEdit isOpen={edit} setOpen={handleEditForm} />
         </div>
       </div>
     </div>
