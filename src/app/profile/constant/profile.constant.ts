@@ -5,10 +5,10 @@ export const PROFILE_SIDE_NAV: ProfileSideNav[] = [
     id: 'profile',
     label: 'My Profile',
   },
-  {
-    id: 'order',
-    label: 'My Order',
-  },
+  // {
+  //   id: 'order',
+  //   label: 'My Order',
+  // },
   {
     id: 'wishlist',
     label: 'My Whislist',
